@@ -1,0 +1,195 @@
+---
+title: "Module 2 Homework: Basic data manipulation and visualization"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+
+In this assignment, you will be analyzing flight observations from a colony of Rhinoceros Auklets on Protection Island in the Salish Sea. Three individual birds were tagged with a GPS tracking device that monitors flight distances. Using this dataset, you'll demonstrate your data manipulation skills to produce statistics and visualizations (tables and histogram charts).
+
+
+OBJECTIVES
+- Calculate descriptive statistics for a given dataset. 
+- Create visualizations including a line graph and a histogram for a given dataset.
+- Apply Sturge's Rule to calculate class widths for a histogram. 
+
+---
+
+
+We will be using the BirdMove datases. This data consists of total flight distances (km) made by three individual birds that were fitted with GPS tracking devices. Birds were Rhinoceros Auklets tagged on Protection Island which is a seabird colony within the Salish Sea. Each row is a daily measurement of the total distance travelled by each of the three birds (columns: BirdID_1, BirdID_2, BirdID_3). Read the data into R
+
+```{r}
+# Your code here
+```
+
+# Question 1
+
+## 1a) 
+
+Given the information shown in the table, and your reading of the information about this data, is travel distance a quantitative or qualitative variable, AND what level of measurement does it belong to AND explain why (4 pts)
+
+Your answer here
+
+## 1b) 
+
+Separately for each of the three birds find the shortest daily travel distance. This is known as the minimum of the data (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 1c) 
+
+Separately for each of the three birds find the longest daily travel distance. This is known as the maximum of the data (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 1d) 
+
+The difference between the maximum and minimum values in a data set is known as the range. What is the range in distances travelled for each bird (3 pts)?
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 1e) 
+
+For each bird calculate the mean, the standard deviation, and coefficient of variation of distance travelled by each bird (Note: round your answer to 2 decimal places) (9 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 1f) 
+
+Given your answer in (1e) which bird had the most variable travel distances? (2 pts)
+
+Your answer here
+
+# Question 2
+
+In this question we will create a line graph of the distances travelled by the birds through time. Firstly, the date column in our data isn’t formatted as a date (by default R reads in strings of text as just that, a string of text). However, we can re-format those strings as a date using the as.Date() function by following the commands below
+
+```{r}
+# The following code converts the date column to a date class
+# The format argument tells R how to interpret the string of txt 
+BirdMove$date <- as.Date(BirdMove$date, format="%d/%m/%Y")
+head(BirdMove)
+```
+
+Run the above code and make sure that the dates look correct (they should appear as YYY-MM-DD).
+
+## 2a) 
+
+Create a line graph of travel distances through time for bird ID_2, plotting daily travel distance against date.
+
+When creating the plot add the following plot attributes by specifying the necessary arguments in the plot function (for more help with the plot function type ?plot in R):
+
+- The default plot type in R is a scatterplot, we want a line graph instead. To do this, use the type="l" option. 
+
+- Label the x axis, using the xlab argument, “Date”
+
+- Label the y axis, using the ylab argument, “Daily travel distance (km)”
+
+- Change the y-axis range using the ylim argument so that the axis ranges from 0 to 250
+
+- Add a plot title using the main argument. Set the plot title to be a brief description of the information plotted followed by your name in parentheses
+
+- Change the line width using the lwd function to 2
+
+Include your plot below (6 pts)
+
+```{r}
+# Your code here
+```
+
+## 2b) 
+
+Now overlap the distances travelled by Bird ID_3 onto this figure using the lines() function, changing the color of the Bird ID_3 line to distinguish it from Bird ID_2, but keeping the same linewidth as before.
+Once the 2 line is added, add a legend to tell the viewer which line belongs to which bird using the legend() function. (4 points)
+
+```{r}
+# Your code here    
+```
+
+## 2c) 
+
+Comparing the distances traveled, provide a brief description of any major differences you see between the two patterns through time (2 pts)
+
+Your answer here
+
+# Question 3
+
+We will now investigate the distribution of data for Bird ID_1 by creating a frequency distribution and a histogram.
+
+Sturge's rule:
+$$
+\text{Bin width} = \frac{x_{\text{max}} - x_{\text{min}}}{1 + 1.44 \times \ln(n)}
+$$
+
+## 3a) 
+
+Use Sturge’s Rule to come up with class widths for the histogram of travel distances recorded for Bird ID_1
+
+Note: try the nrow() function to tell you the size of the dataset, and the log() function in R returns the natural log ln. 
+Write your answer below, including your working. Round your answer to the nearest whole unit (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 3b) 
+
+Using the class width (nearest whole unit) you got in 3a calculate the frequency distribution of travel distances made by Bird ID_1
+
+Step 1: Find the class limits (set the lowest limit at 0) using the class width
+
+Step 2: Based on those classes, find the frequency of observations in each class using the following snippet, replacing LOWERLIMIT and UPPERLIMIT with the values for each class
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+Make a table with information on class limits, midpoints and frequencies (make sure to check that all the frequencies sum to the total size of the dataset) (5 pts)
+
+We've provided template code for how to do this in R. Complete by inputting your values in the appropriate columns (i.e. replace c(1) with a vector of your values)
+
+```{r}
+# Fill in this table
+
+data.frame(
+  Class_min = c(1),
+  Class_midpoint = c(1),
+  Class_max = c(1),
+  Frequency = c(1)
+)
+```
+
+## 3c) 
+
+Now, make a histogram of the travel distances made by Bird ID_1 using the hist function. Label the x-axis label with the appropriate variable name and include your name as the histogram title. Include your graph below (4 pts)
+
+```{r}
+# Your code here
+```
+
+## (3d) 
+
+Based on the frequency distribution and the histogram, would you say the distribution of daily travel distances made by Bird ID_1 was symmetric, uniform, left-skewed or right-skewed, justifying your answer based on observed features. (3 pts) 
+
+Your answer here
