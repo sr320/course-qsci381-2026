@@ -1,5 +1,5 @@
 ---
-title: "Laboratory 1 Skills – KEY"
+title: "Module 02 – KEY"
 date: "2025-01-13"
 output: html_document
 ---
@@ -10,20 +10,13 @@ We will calculate descriptive statistics of GPS data describing the location of 
 
 ## Setup
 
-Download `GPS.csv` from the course Canvas site and read it into R using `read.csv()` (be sure to set your working directory to the file’s location).
-
 ```{r setup, include=TRUE}
-# check your current working directory
-getwd()
-
-# set your working directory to the file’s location (edit this path for your computer)
-# setwd("D:/Documents/UW/2024-2025/QSCI381_TA/Labs")
 
 # read in data (edit the path as needed)
-gps <- read.csv('../Data/GPS.csv', header = TRUE)
+gps <- read.csv('GPS.csv', header = TRUE)
 
 # view data (optional)
-# View(gps)
+ View(gps)
 ```
 
 ## (1a) Mean HDOP
