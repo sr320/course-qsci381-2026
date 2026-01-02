@@ -1,0 +1,305 @@
+---
+title: "Module 3 Homework: Descriptive Statistics & Probability"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+This assignment has two parts. In the first section you'll work with a
+medical data set where patients were randomly assigned to two anesthetic
+treatment groups, and the primary outcome was the measured time from
+administering the anesthetic to when the anesthetics took full effect.
+For this scenario you'll calculate descriptive statistics and create a
+visualization.
+
+In the second part, former QSCI 381 students data about their dominant
+eye, and where they sat in the lecture auditorium. With this data you'll
+be creating contingency tables and calculating probabilities for certain
+events.
+
+OBJECTIVES
+
+-   Calculate descriptive statistics for a given dataset.
+
+<!-- -->
+
+-   Calculate and interpret z-scores.
+
+<!-- -->
+
+-   Create visualizations including a box-whisker plot for a given
+    dataset
+
+-   Construct a contingency table
+
+-   Calculate empirical probabilities
+
+-   Calculate expected probabilities of occurrence for given
+    combinations of events.
+
+# PART A
+
+In this question we will be using a medical dataset examining the
+effectiveness of two different methods of anesthetic delivery.
+
+```{r}
+# Change file path if necessary
+med.data <- read.csv("anesthetic.csv")
+```
+
+This data set contains 103 patients who were scheduled to undergo an
+upper extremity procedure. For these procedures two different types of
+anesthetic are used (ropivacaine, mepivacaine), and the researchers
+wished to identify whether it was more advantageous to administer both
+at the same time (mixture), or to administer one anesthetic first,
+followed by the second after a period of 5 minutes (sequential
+treatment). Patients were randomly assigned among the two treatment
+groups, and the primary outcome was the measured time from administering
+the anesthetic to when the anesthetics took full effect (4-nerve sensory
+block onset).
+
+The data consists of the following variables for each patient
+
+-   subject: patient identifier number
+
+-   group: treatment group they were assigned to -- Mixture (group = 1)
+    or Sequential (group = 2)
+
+-   gender: patient gender -- Female (gender = 0), Male (gender = 1)
+
+-   bmi: body mass index of the patient (numeric values)
+
+-   age: patient age in years
+
+-   onset_sensory: time until anesthetic took effect (minutes)
+
+## 1)
+
+For each of the two treatment groups calculate the
+
+-   Sample size
+
+-   Mean
+
+-   Median
+
+-   Minimum
+
+-   Maximum
+
+-   Standard Deviation
+
+of the time taken until the anesthetic took effect (i.e. of
+onset_sensory) and place your results into a table with one column for
+each treatment group and a row for each descriptive statistic, making
+sure your rows are labeled. Round all of your answers to one decimal
+place (12 pts).
+
+You can create this table using R code, or by switching to the "Visual"
+tab of your R Markdown and inserting a table.
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 2)
+
+For each treatment group calculate the coefficient of variation. Show
+your answers below, rounding numeric values to two decimal places (4
+pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 3)
+
+For each treatment group calculate the:
+
+-   lower (Q1) quartile
+
+-   upper (Q3) quartile,
+
+-   the interquartile range (IQR)
+
+-   upper decile (i.e. 90% percentile)
+
+-   lower decile (i.e. 10% percentile)
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 4)
+
+Which treatment group had the largest IQR? Compare and contrast this
+with the coefficient of variation finding from Question 2? (12 pts).
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 5)
+
+Using the boxplot() or plot() function, plot anesthetic response times
+(onset_sensory) as a box-whisker plot with onset_sensory on the y-axis,
+and treatment group on the x-axis. Label the axes accordingly (including
+units for onset_sensory), and include your name as the title of the
+plot. (5 pts)
+
+```{r}
+# Your code here
+```
+
+## 6)
+
+Based on the mean and median response times, and via examination of the
+boxplots (created in Question 5), is the distribution of response times
+symmetric, left-skewed or right-skewed, giving reasons for your answer
+(3 pts).
+
+Your final answer(s) here
+
+## 7)
+
+Calculate the z-scores for a response time of 20 minutes for each
+treatment group based on each group's mean and standard deviation. Round
+your answers to 2 decimal places (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 8)
+
+Using the mean and standard deviation calculated for each group,
+calculate the proportion of observations for each group that are within
+± 1 SD of the mean, and also the proportion that are within ± 2 SD of
+the mean. Round your answers to 3 decimal places
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 9)
+
+Compare these proportions to the expected values according to the
+Empirical Rule, noting any differences between the calculated values,
+and those expected from the Empirical Rule, and why this difference may
+have occurred (12 pts)
+
+Your final answer(s) here
+
+# PART B
+
+In this question we will work with contingency tables and calculate
+probabilities, using the eye dominance dataset we collected in class.
+
+```{r}
+# Change file path if necessary
+eyes <- read.csv("QSCI381Eyes.csv")
+```
+
+This dataset consists of survey results regarding eye dominance, and
+seat location within the lecture theatre. The data consists of the
+following variables:
+
+-   ID: Participant ID number
+
+-   eye: whether the individual was right or left eye dominant
+
+-   side: the side of the room the participant was sat in
+
+-   row: the row number the individual was sat in
+
+-   morning: whether the participant reported as being a morning person
+    or not
+
+## 10)
+
+Construct a contingency table of the frequency of eye dominance (2 rows;
+right or left) by which side of the room they sat in (3 columns; Left,
+Middle, Right). Make sure you label rows and columns. Include column and
+row totals. (8 pts)
+
+You can create this table using R code, or by switching to the "Visual"
+tab of your R Markdown and inserting a table.
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 11)
+
+Calculate the empirical probabilities for the following scenarios
+
+-   The probability an individual is left eye dominant
+
+-   The probability an individual is right-eye dominant AND sat in the
+    middle of the room
+
+-   The probability an individual is left eye dominant GIVEN they are
+    sat in the left side of the room
+
+-   The probability an individual is right-eye dominant OR is sat in the
+    right side of the room
+
+In each case round your answer to 3 decimal places (8 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 12)
+
+Using the probability an individual is right-eye dominant P(right-eye),
+and the probability an individual sat in the left of the room
+P(left-room), calculate the expected probability of an individual being
+right-eye dominant AND that sat in the left side of the room P(right-eye
+AND left-room) assuming that these events are Independent using the
+Multiplication Rule. Round your answer to 3 decimal places (4 pts).
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 13)
+
+Now calculate the empirical observed probability of an individual being
+right eye dominant AND that sat in the left side of the room. Round your
+answers to 3 decimal places (2 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer(s) here
+
+## 14)
+
+Comparing your empirical probability (calculated in 13) to the expected
+probability (calculated in 12c), do you think the side of the room sat
+in and eye dominance are independent? (1 pt)
+
+Your final answer(s) here
