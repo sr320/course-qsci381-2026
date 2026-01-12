@@ -7,7 +7,7 @@ output: pdf_document
 
 We will be calculating descriptive statistics of some GPS data describing the location of an invasive bird species on the island of Nusa Penida, Indonesia. Specifically, we will look at the Horizontal Dilution of Precision (or HDOP) of each location recording. The HDOP is an indicator of the accuracy for each recording (higher values indicate lower accuracy). We’d like to explore some statistics to get an idea of the quality of the GPS data.
 
-Download “GPS.csv” from the course Canvas site and read it into R using the read.csv() command (be sure to set your working directory to the file’s location! The folder that your csv file is in)
+Read the data file, `GPS.csv`, provided in the `02-Module` directory, into R using the read.csv() command (be sure to set your working directory to the file’s location! The folder that your csv file is in)
 
 ```{r}
 # Your code here
