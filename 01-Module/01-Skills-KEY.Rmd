@@ -1,0 +1,274 @@
+---
+title: "QSCI 381: Data & Measurement -- KEY"
+author: "Student Name"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  pdf_document:
+    toc: true
+  html_document:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+# Overview: Data & Measurement
+
+In this activity, you will:
+- Practice working in R and RStudio
+- Learn how statisticians think about data
+- Distinguish populations from samples
+- Identify different types of data
+- Think critically about study design and data collection
+
+Use this document to write short answers and run simple R commands.
+
+---
+
+# R & RStudio
+
+## Working in RStudio
+
+Run the code below and answer the questions.
+
+```{r}
+getwd()
+list.files()
+```
+
+**Questions:**
+- What is your working directory?
+
+The **working directory** is the folder (or "directory") on your computer where R is currently reading and saving files. It is the default location, and other file locations are described in reference to the working directory.
+
+- What files do you see?
+
+You should see the `01-Skills.Rmd` file.
+
+---
+
+## Basic R objects
+
+```{r}
+x <- 5
+y <- 12
+
+x + y
+x * y
+```
+
+**Question:**  
+What is an *object* in R, and why are objects useful?
+
+An R **object** is a named container that stores values or data (for example, a vector or a data frame). Objects are useful because they allow data to be saved, reused, manipulated, and referenced throughout an analysis.
+
+---
+
+# Introduction to the Field of Statistics
+
+In your own words, answer:
+
+**What is statistics?**
+
+Statistics is the science of collecting, analyzing, and interpreting data in order to learn about the world and make informed decisions under uncertainty.
+
+---
+
+# Inference as a Means of Discovery
+
+Statistical inference uses data from a **sample** to learn about a **population**.
+
+**Example inference question (write your own):**
+
+Ex. "Is the average shell length of oysters at this hatchery different from the historical average?"
+
+---
+
+# Populations & Parameters vs Samples & Statistics
+
+Fill in the definitions below.
+
+- **Population**:
+The entire group of individuals or observations of interest.
+
+- **Parameter**:
+A numerical value that describes a characteristic of a population.
+
+- **Sample**:
+A subset of the population that is actually measured or observed.
+
+- **Statistic**:
+A numerical value calculated from a sample that summarizes the data. 
+
+## Practice
+
+Suppose you measure shell length from 25 oysters at a hatchery.
+
+- Population:
+
+All oysters in the hatchery
+
+- Sample:
+
+The 25 oysters measured
+
+- Parameter:
+
+True mean shell length of all oysters at the hatchery (the population)
+
+- Statistic:
+
+The mean shell length calculated from the 25 measured oysters (the sample)
+
+---
+
+# Types of Data
+
+Common types of data include:
+- **Categorical** (nominal, ordinal)
+- **Numerical** (discrete, continuous)
+
+## Classify the following variables
+
+| Variable | Type of Data |
+|--------|--------------|
+| Species | Categorical (nominal) |
+| Temperature (°C) | Numerical (continuous) |
+| Number of larvae | Numerical (discrete) |
+| Disease status (yes/no) | Categorical (nominal) |
+| pH | Numerical (continuous) |
+
+---
+
+# Study Design
+
+A **study design** describes how data are collected to answer a question.
+
+Describe a simple study you could conduct.
+
+- Research question:
+
+"Does temperature affect larval survival in oysters?"
+
+- Response variable:
+
+Larval survival rate.
+
+- Explanatory variable(s):
+
+Temperature.
+
+- Units of observation:
+
+Individual larvae (or tanks, depending on measurement).
+
+---
+
+# Data Collection
+
+List **three potential problems** that can occur during data collection.
+
+1. Measurement error or inconsistent measurement methods
+2. Biased or non-random sampling
+3. Missing, lost, or incorrectly recorded data
+
+---
+
+# Sampling Approaches
+
+Examples of sampling approaches include:
+- Random sampling
+- Stratified sampling
+- Convenience sampling
+
+**Question:**  
+Which sampling approach is strongest for making inferences about a population, and why?
+
+Generally, **random sampling** is the strongest because it reduces bias and ensures that the sample is representative of the population, allowing valid statistical inference.
+
+---
+
+# Experimental Design
+
+Experiments are used to test **cause-and-effect** relationships.
+
+Key components:
+- Treatments
+- Replication
+- Randomization
+- Controls
+
+## Scenario
+
+You test larval survival at three temperatures using multiple tanks per temperature.
+
+Identify:
+- Treatments:
+
+**Temperature** (three levels)
+
+- Replicates:
+
+The multiple tanks at each temperature
+
+- Response variable:
+
+Larval survival
+
+- Why this is an experiment:
+
+The treatment, temperature, is being **actively manipulated** by the researcher, allowing cause-and-effect conclusions to be tested.
+
+---
+
+# Data & Measurement: Summary & Application
+
+## Create a small dataset
+
+```{r}
+data <- data.frame(
+  temperature = c(10, 10, 14, 14, 18, 18),
+  survival = c(0.85, 0.88, 0.75, 0.78, 0.60, 0.62)
+)
+
+data
+```
+
+## Summarize the data
+
+```{r}
+mean(data$survival)
+sd(data$survival)
+```
+
+**Questions:**
+- What does the mean represent?
+
+The mean represents the average value of the measured variable across all observations in the datset. It summarizes central tendency, but is heavily influenced by extreme values.
+
+- Is this a statistic or a parameter?
+
+We calculated the mean from a *sample*, rather than from an entire population. A parameter would describe a true population value.
+
+- What inference question could you ask with this data?
+
+Ex. "Is the mean larval survival in this population greater than 0.75?"
+
+---
+
+# Reflection
+
+In 2–3 sentences:
+- What was the most important concept from today?
+
+Any reasonable, thoughtful answer
+
+- What is still confusing?
+
+Any reasonable, thoughtful answer
