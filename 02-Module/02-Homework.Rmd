@@ -160,10 +160,8 @@ Step 1: Find the class limits (set the lowest limit at 0) using the class width
 Step 2: Based on those classes, find the frequency of observations in each class using the following snippet, replacing LOWERLIMIT and UPPERLIMIT with the values for each class
 
 ```{r}
-# Your code here
+nrow(BirdMove[BirdMove$BirdID_1 >= LOWERLIMIT & BirdMove$BirdID_1 < UPPERLIMIT,])
 ```
-
-Your final answer here
 
 Make a table with information on class limits, midpoints and frequencies (make sure to check that all the frequencies sum to the total size of the dataset) (5 pts)
 
