@@ -1,0 +1,203 @@
+---
+title: "Module 4 Homework: Descriptive Statistics & Probability"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# PART A
+
+In this question we will look at scenarios using permutations and combinations. In each case show your working before presenting the final answer.
+
+You are working as an insect taxonomist in a laboratory. You have 11 specimens whose label tags have unfortunately been mixed up. Each label tag contains information on species, order (Hymenoptera, Coleoptera, Diptera, Lepidoptera) and year collected. The tags are:
+
+1.  Dendroctonus pseudotsugae -- Coleoptera - 1998
+2.  Dendroctonus pseudotsugae -- Coleoptera - 1997
+3.  Choristoneura fumiferana -- Lepidoptera - 2001
+4.  Scolytus ventralis -- Coleoptera - 2011
+5.  Medetera aldrichii -- Diptera - 2002
+6.  Medetera aldrichii -- Diptera - 1999
+7.  Coeloides vancouverensis -- Hymenoptera - 2015
+8.  Temnoschiela chlorodia -- Coleoptera - 2001
+9.  Choristoneura biennis -- Lepidoptera - 1996
+10. Glypta fumiferana -- Hymenoptera -- 2007
+11. Glypta fumiferana -- Hymenoptera - 2005
+
+As you have been newly hired, you have no knowledge of what tag belongs to which insect, and so you assign the tags to the insects at random.
+
+## Question 1
+
+How many different ways are there of assigning the tags to the specimens? (2 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 2 
+
+What is the probability that the specimens are all labeled with the correct tag? (2 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 3 
+
+What is the probability that the first three specimens are labeled correctly? (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 4 
+
+By considering the number of permutations of orders (Coleoptera, Diptera, Hymenoptera, Lepidoptera), what is the probability that every specimen is assigned a label showing the correct order? (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 5 
+
+Six of the specimens are contained within a large display cabinet. Of the 11 labels, you pick 6 at random and place them in the information section next to the cabinet, which doesn't label the individual specimens, but just lists the specimens contained within the cabinet. What is the probability that you correctly pick the tags belonging to the specimens contained within the cabinet? (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 6 
+
+What is the probability that your selection of six labels contains all the Hymenoptera labels, and any other three labels? (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+# PART B
+
+In a health study, 25 participants are asked to record the number of days over the previous three weeks (21 days) in which they exercised for more than one hour. The following data shows the number of days reported by the 25 participants.
+
+Read the following data into R:
+
+```{r}
+exdays<-c(14,9,17,11,17,12,13,12,7,5,18,6,14,12,17,13,16,20,1,15,7,2,
+4,21,8)
+```
+
+Note that each value in exdays represents the number of days reported by a single person that they exercised in the past 21 days. For example, the first value of 14 indicates that the first person exercised on 14 days in the past 21 days.
+
+## Question 7 
+
+Given the description of this observational study, what distribution would you use to describe these data and why? Describe the parameters of this distribution and how they relate to this experiment. (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 8 
+
+What is the mean and variance of the collected data? Round your answers to 2 decimal places (2 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 9 
+
+Using the mean you calculated in Question 8, what is the mean probability of exercising on any particular day? Round your answer to 3 decimal places (2 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 10 
+
+Using your answer in Question 9, what would be the expected number of exercise days per week, and per month (30 days)? Round your answer to 2 decimal places (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 11 
+
+Given the assumed distribution, use your answer in Question 10 to determine the probability that an individual will have 5 days of exercise in a 14 day period. Round your answer to 3 decimal places (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 12 
+
+What is the probability an individual will exercise less than 11 days in a 14-day period? Round your answer to 3 decimal places and show your work (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+# PART C
+
+In this example we will use the hermit dataset.
+
+```{r}
+# Replace "hermit.csv" with your file path (if necessary)
+hermit<- read.csv(file = "hermit.csv", header = T)
+```
+
+This dataset shows experimental results exploring how the pH of water affects the presence of a shell in male and female hermit crabs. Each row is a result from a single hermit crab and contains information on whether it had a shell (yes, no), its gender (male, female), and the pH of the water.
+
+## Question 13 
+
+Calculate the separate probabilities of having a shell for hermit crabs in water \> 7 pH (basic water) and for \< 7 pH (acidic water) irrespective of gender. Round your answers to 3 decimal places (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 14 
+
+Using your answer from Question 13, if you have two bodies of water each containing 75 hermit crabs, one which is acidic (\< 7 pH), and another which is basic (\> 7 pH), what would be the mean and standard deviation of the number of hermit crabs with shells for each body of water? Round your answer to 2 decimal places (4 pts).
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 15 
+
+Using your answer from Question 13, if you had two bodies of water each containing 30 hermit crabs, one which was acidic (\< 7 pH), and another which basic (\> 7 pH), what would be the probability that at least 15 of the hermit crabs have shells in the acidic water, and separately for the basic water. Round your answer to 3 decimal places and show your working (4 pts).
+
+```{r}
+# Your code here
+```
+
+Your final answer here

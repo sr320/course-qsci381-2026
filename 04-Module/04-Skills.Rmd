@@ -1,0 +1,111 @@
+---
+title: "Module 04 - Skills"
+author: "Student Name"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+We are going to use the “lab3skillsdata.csv” file, which contains survey information on the gender, age, and hometown of commuters at a bus stop. REMEMBER: capitalization, spacing, and parentheses are important when using datasets and functions in R! 
+
+Include all code for each question, plus output from R or graphs, and answer all sub-questions. 
+
+## 1.	Read in the “lab3skillsdata.csv” file using the read.csv() command and name it data. Look at the first six rows of data.
+
+```{r}
+# Your code here
+```
+
+## 2.	Change the Age column values of data from numeric to character (“under21” , “over21”) values using the ifelse() function. Print the first six lines of data. data$AgeFactor<- ifelse(data$Age < 21, "under21", "over21")
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 3.	Now we want to investigate a contingency table with three variables.
+
+### a.	Create two Contingency Tables - one for commuters from Tacoma and one for commuters from Seattle with the age and gender variables. Add margins and use the table to answer the following question. Note: order is important when entering data into the table() function; AgeFactor, gender, HomeTown should be the order of variables.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### b.	What are the separate probabilities of being over 21 for commuters from Tacoma and commuters from Seattle?
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 4.	Now we will collect some data of our own to illustrate the Law of Large numbers. We will be simulating the act of flipping a coin. Using the sample() function, simulate
+
+### a.	Ten coin flips
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### b.	100 coin flips
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### c.	1000 coin flips
+NOTE. This is a simulation so the results will vary slightly. For the assignment, please use the command set.seed(), which allows you to create a reproducible output
+d.	What do you notice about the frequencies of heads or tails as the number of trials increases? 
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 5.	Now we will simulate data with the rbinom() function
+The rbinom function simulates a series of Bernoulli trials and returns the number of successes per trial. The function takes three arguments:
+rbinom(n, size, prob)
+●	n – the number of observations
+●	size – the number of trials per observation
+●	prob – the probability of success for each trial
+You oversee quality control for a widget factory. The factory makes 150 widgets per day with a 1% error rate. Estimate how many widgets we will need to be fixed each day this week.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 6.	You have nine people on a baseball team.  How many different batting orders are possible?  [Each person can only bat once in the order, but every person bats].
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 7.	There are 20 species of coral in a marine preserve. You are asked to collect a set of three unique species.  How many possible combinations are there?
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 8.	You have 16 trees:  4 of them are swamp birch, 3 are black birch, 5 are white birch, and 4 are arctic birch.  How many possible orders are there for planting the trees in a row?
+
+```{r}
+# Your code here
+```
+
+Your final answer here
