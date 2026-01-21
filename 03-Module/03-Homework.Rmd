@@ -24,11 +24,7 @@ OBJECTIVES
 
 -   Calculate descriptive statistics for a given dataset.
 
-<!-- -->
-
 -   Calculate and interpret z-scores.
-
-<!-- -->
 
 -   Create visualizations including a box-whisker plot for a given
     dataset
@@ -39,6 +35,10 @@ OBJECTIVES
 
 -   Calculate expected probabilities of occurrence for given
     combinations of events.
+    
+**To submit your completed homework, knit this .Rmd file to a pdf. This will produce an easy-to-read format that includes all written text, all code, and all code output (including plots). You can then submit the rendered PDF file to Gradescope. When submitting to Gradescope, please select the page(s) that include relevant work and output for each question.**
+
+---
 
 # PART A
 

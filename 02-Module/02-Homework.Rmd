@@ -14,6 +14,8 @@ OBJECTIVES
 - Create visualizations including a line graph and a histogram for a given dataset.
 - Apply Sturge's Rule to calculate class widths for a histogram. 
 
+**To submit your completed homework, knit this .Rmd file to a pdf. This will produce an easy-to-read format that includes all written text, all code, and all code output (including plots). You can then submit the rendered PDF file to Gradescope. When submitting to Gradescope, please select the page(s) that include relevant work and output for each question.**
+
 ---
 
 
