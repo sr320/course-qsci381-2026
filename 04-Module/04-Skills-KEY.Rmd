@@ -1,0 +1,142 @@
+---
+title: "Module 04 - Skills"
+author: "Kathleen Durkin"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+We are going to use the “lab3skillsdata.csv” file, which contains survey information on the gender, age, and hometown of commuters at a bus stop. REMEMBER: capitalization, spacing, and parentheses are important when using datasets and functions in R! 
+
+Include all code for each question, plus output from R or graphs, and answer all sub-questions. 
+
+# 1)	Read in the “lab3skillsdata.csv” file using the read.csv() command and name it data. Look at the first six rows of data.
+
+```{r}
+data <- read.csv("lab3skillsdata.csv")
+head(data)
+```
+
+# 2)	Change the Age column values of data from numeric to character (“under21” , “over21”) values using the ifelse() function. Print the first six lines of data. data$AgeFactor<- ifelse(data$Age < 21, "under21", "over21")
+
+```{r}
+data$AgeFactor <- data$AgeFactor<- ifelse(data$Age < 21, "under21", "over21")
+head(data)
+```
+
+# 3)	Now we want to investigate a contingency table with three variables.
+
+## a.	
+
+Create two Contingency Tables - one for commuters from Tacoma and one for commuters from Seattle with the age and gender variables. Add margins and use the table to answer the following question. Note: order is important when entering data into the table() function; AgeFactor, gender, HomeTown should be the order of variables.
+
+```{r}
+tacoma <- data[data$HomeTown == "Tacoma",]
+seattle <- data[data$HomeTown == "Seattle",]
+addmargins(table(tacoma$AgeFactor, tacoma$Gender))
+addmargins(table(seattle$AgeFactor, seattle$Gender))
+```
+
+## b.	
+
+What are the separate probabilities of being over 21 for commuters from Tacoma and commuters from Seattle?
+
+```{r}
+cat("Tacoma: ", 11/17, "\n")
+cat("Seattle: ", 8/13)
+```
+
+# 4)	Now we will collect some data of our own to illustrate the Law of Large numbers. We will be simulating the act of flipping a coin. Using the sample() function, simulate
+
+## a.	Ten coin flips
+
+Say 0 = heads, 1 = tails
+
+```{r}
+set.seed(25)
+flip10 <- sample(x = c(0,1), size = 10, replace = TRUE)
+table(flip10)
+```
+
+## b.	100 coin flips
+
+```{r}
+flip100 <- sample(x = c(0,1), size = 100, replace = TRUE)
+table(flip100)
+```
+
+## c.	1000 coin flips
+
+```{r}
+flip1000 <- sample(x = c(0,1), size = 1000, replace = TRUE)
+table(flip1000)
+```
+
+NOTE. This is a simulation so the results will vary slightly. For the assignment, please use the command set.seed(), which allows you to create a reproducible output
+
+## d.	What do you notice about the frequencies of heads or tails as the number of trials increases? 
+
+As number of trials increases, the proportion of flips landing on heads/tails approaches the theoretical 50/50 chance.
+
+# 5)	Now we will simulate data with the rbinom() function
+
+The rbinom function simulates a series of Bernoulli trials and returns the number of successes per trial. The function takes three arguments:
+rbinom(n, size, prob)
+
+-	n – the number of observations
+-	size – the number of trials per observation
+-	prob – the probability of success for each trial
+
+You oversee quality control for a widget factory. The factory makes 150 widgets per day with a 1% error rate. Estimate how many widgets we will need to be fixed each day this week.
+
+```{r}
+set.seed(25)
+fix <- rbinom(n=7, size=150, prob=0.01)
+fix
+sum(fix)
+```
+
+# 6)	You have nine people on a baseball team.  How many different batting orders are possible?  [Each person can only bat once in the order, but every person bats].
+
+```{r}
+nPr <- function(n,r){
+  permutation <- factorial(n)/factorial(n-r)
+  return(permutation)
+}
+
+nPr(9,9)
+
+# equivalent
+factorial(9)
+```
+
+# 7)	There are 20 species of coral in a marine preserve. You are asked to collect a set of three unique species.  How many possible combinations are there?
+
+```{r}
+nCr <- function(n, r){
+  combination <- factorial(n)/(factorial(r)*factorial(n-r))
+  return(combination)
+}
+
+nCr(20, 3)
+
+# or can use built-in R function
+choose(20,3)
+```
+
+# 8)	You have 16 trees:  4 of them are swamp birch, 3 are black birch, 5 are white birch, and 4 are arctic birch.  How many possible orders are there for planting the trees in a row?
+
+N = 16
+nS = 4
+nB = 3
+nW = 5
+nA = 4
+
+Use the Multinomial Coefficient (generalization of the Binomial Coefficient)
+
+```{r}
+# N! / (nS! * nB! * nW! * nA!)
+factorial(16)/(factorial(4)* factorial(3)* factorial(5)* factorial(4))
+```
+
+
+
