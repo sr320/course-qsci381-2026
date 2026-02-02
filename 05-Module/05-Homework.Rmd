@@ -1,0 +1,194 @@
+---
+title: "Module 5 Homework: Descriptive Statistics & Probability"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+**For all numeric answers, show your work using code or text**
+
+# PART A
+
+In this short question we will work a little bit more with using the binomial distribution using an example covered in lectures. Globally, 8% of people have blue eyes, and we are going to evaluate a range of scenarios related to this.
+
+## Question 1 
+
+The US women’s soccer squad has 23 players, 7 of which have blue eyes. Using the binomial distribution (dbinom), calculate the probability of observing exactly this many blue-eyed individuals out of 23 if the probability was 8% that any one individual has blue eyes (2 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 2 
+
+If the US women’s soccer squad was representative of the global population (i.e. 8% chance of having blue eyes), what would be the most likely number of players with blue eyes that you would expect to observe (4 pts)
+[Hint: try using dbinom for a range of different scenarios informed by the expected value]
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 3
+
+Using the binomial quantile function (qbinom), calculate the upper limit of the range of players with blue eyes (still out of 23) that you would expect to observe with 0.95 probability if the true proportion was 8% (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 4
+
+Using your answers (1-3) comment on how anomalous the observed count of 7 blue-eyed individuals out of 23 is, and suggest possible reasons for this discrepancy (2 pts). 
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+# PART B
+
+In this example we will be using the ShipAccidents dataset available from canvas to explore the poisson distribution.
+
+```{r}
+# Replace file path if necessary
+ship <- read.csv("shipaccidents.csv")
+head(ship)
+```
+
+This data describes the number of accidents recorded for a range of ship types, along with their service period. We will mostly consider the following variables
+
+- incidents: the total number of accidents recorded for each ship type
+- service: the collective number of months that ships of that type were active for
+
+## Question 5
+
+Plot a histogram of the number of incidents recorded in this dataset. Label the x and y-axes accordingly and define the plot title to be your name. Provide a written description of the main features you would interpret from this data (5 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 6
+
+Using the number of incidents and the time that the ship type was active for, calculate the rate (number per month) of incident occurrence per ship type (i.e. create a new column called rate), and from this, report the mean and range of incident rates across the different ship types (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 7
+
+Using the mean incident rate from (Q6), if an individual ship was in service for 50 years (600 months), what would be the expected value for the number of incidents (2 pts)
+
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+Using the rate of incident occurrence for a ship of type E3, what would be the probability of observing: 
+
+## Question 8 
+
+incident in the first ten years (120 months) of service (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 9
+
+at least 2 incidents in the first ten years (120 months) of service (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 10
+
+Assuming that incident counts are distributed according to a poisson distribution, calculate the most likely (i.e. count with highest probability) incident count for a vessel of type C5 that had been in service for 40 years (480 months), reporting the count AND it’s probability of occurrence (4 pts)
+[Hint: use dpois for a range of counts]
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+# PART C
+
+In this question we will be using the AudioVisual.csv dataset.
+
+Subjects in a reaction time study were asked to press a button as fast as possible after being exposed to either an auditory stimulus (a burst of white noise) or a visual stimulus (a circle flashing on a computer screen). Average reaction times (ms) were recorded for between 10 and 20 trials for each type of stimulus for each subject.
+
+We will be using this dataset to look at reaction time differences between auditory or visual stimuli.
+
+## Question 11
+
+Calculate the mean and standard deviation of response times for auditory and visual stimuli. Comment on which stimulus results in the fastest response times, and which results in the most consistent response times. Round your answers to 1 decimal place (6 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 12
+
+In athletics, if an Athlete responds in less than 100 ms to the starting gun it is deemed a false start and they are disqualified. Using your answer in (Q11) and assuming the data follow a normal distribution, what proportion of responses would be deemed a false start. You can assume that they respond to an auditory stimulus. Round your answer to 3 decimal places. (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 13
+
+At the 2004 Olympics, the fastest reaction time during the womens 100 m hurdles final was 112 ms. Assuming reaction times to auditory stimuli are normally distributed, what proportion of people respond quicker than 112 ms, but would not be excluded due to false starts (< 100 ms). Round your answer to 3 decimal places. (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 14
+
+Assuming that response times are normally distributed, for each stimulus type identify the expected fastest 10% and slowest 10% (i.e. 90th percentile) of response times using the means and standard deviations reported in (Q11) (6 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## Question 15
+
+Compare the fastest 10% of reaction times given a visual stimuli calculated in (Q14) (i.e. assuming a perfect normal distribution) to the corresponding empirical (i.e. observed) value in the dataset, and comment on any difference that you observe (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
