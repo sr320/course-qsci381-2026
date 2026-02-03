@@ -188,7 +188,7 @@ Your final answer here
 
 ## Question 14 
 
-Using your answer from Question 13, if you have two bodies of water each containing 75 hermit crabs, one which is acidic (\< 7 pH), and another which is basic (\> 7 pH), what would be the mean and standard deviation of the number of hermit crabs with shells for each body of water? Round your answer to 2 decimal places (4 pts).
+Using your answer from Question 13, if you have two bodies of water each containing 75 hermit crabs, one which is acidic (</= 7 pH), and another which is basic (> 7 pH), what would be the mean and standard deviation of the number of hermit crabs with shells for each body of water? Round your answer to 2 decimal places (4 pts).
 
 ```{r}
 # Your code here
@@ -198,7 +198,7 @@ Your final answer here
 
 ## Question 15 
 
-Using your answer from Question 13, if you had two bodies of water each containing 30 hermit crabs, one which was acidic (\< 7 pH), and another which basic (\> 7 pH), what would be the probability that at least 15 of the hermit crabs have shells in the acidic water, and separately for the basic water. Round your answer to 3 decimal places and show your working (4 pts).
+Using your answer from Question 13, if you had two bodies of water each containing 30 hermit crabs, one which was acidic (</= 7 pH), and another which basic (> 7 pH), what would be the probability that at least 15 of the hermit crabs have shells in the acidic water, and separately for the basic water. Round your answer to 3 decimal places and show your working (4 pts).
 
 ```{r}
 # Your code here
