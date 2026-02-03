@@ -178,7 +178,7 @@ This dataset shows experimental results exploring how the pH of water affects th
 
 ## Question 13 
 
-Calculate the separate probabilities of having a shell for hermit crabs in water \> 7 pH (basic water) and for \< 7 pH (acidic water) irrespective of gender. Round your answers to 3 decimal places (4 pts)
+Calculate the separate probabilities of having a shell for hermit crabs in water >7 pH (basic water) and for </= 7 pH (acidic water) irrespective of gender. Round your answers to 3 decimal places (4 pts)
 
 ```{r}
 # Your code here
