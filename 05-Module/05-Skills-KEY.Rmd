@@ -1,0 +1,218 @@
+---
+title: "Module 5 -- Skills KEY"
+author: "Kathleen Durkin"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Question 1
+
+The Birdwatchers of America are interested in the populations of bird species common to Western Oregon (data are in Lab4_SkillsData.csv).  
+For one day, they set up a station and counted the number of American robins, black-capped chickadees and barn swallows that were observed each hour.  
+
+## a)
+
+One of the questions the birdwatchers are interested in is the number of total birds observed in a unit of time. What discrete distribution would you use for analysis?
+
+You would use a Poisson distribution.
+
+## b)
+
+What is the expected number of total birds one would see during an hour of bird watching? 
+
+```{r}
+birds <- read.csv("../Data/Lab4_SkillsData.csv",header=T)
+
+lambda <- mean(birds$Total.Birds)
+lambda
+```
+
+On average, one would expect to see 4.625 birds during an hour of bird watching.
+
+## c)
+
+What is the probability that in any given hour 6 birds will be observed?  Calculate this probability using both the Poisson probability formula and dpois(). 
+
+```{r}
+x <- 6
+(exp(-1*lambda)*(lambda^x))/factorial(x)
+
+dpois(x, lambda)
+```
+
+The probability that in any given hour 6 birds will be observed is 0.133.
+
+## d)
+
+What is the probability that you would observe more than 4 birds in any given hour? Calculate this probability using both dpois() and ppois().
+
+```{r}
+1-sum(dpois(0:4, lambda))
+1-ppois(4, lambda)
+```
+
+```{r}
+# Set parameters
+lambda <- 4.625  # Expected number of events per hour
+x_vals <- 0:15   # Range of values for X
+probs <- dpois(x_vals, lambda)  # Poisson probabilities
+
+# Plot Poisson distribution
+plot(x_vals, probs, type = "h", lwd = 2, col = "black",
+     main = "Poisson Distribution (λ = 4.625)",
+     xlab = "Number of Events",
+     ylab = "Probability",
+     ylim = c(0, max(probs) * 1.2))
+
+# Shade X > 4
+x_shade <- 5:15
+probs_shade <- dpois(x_shade, lambda)
+
+# Add colored bars for P(X > 4)
+points(x_shade, probs_shade, type = "h", lwd = 2, col = "red")
+
+# Add probability labels
+text(x_shade, probs_shade + 0.005, labels = round(probs_shade, 3), col = "red", cex = 0.8)
+
+# Calculate and display total probability P(X > 4)
+p_greater_4 <- sum(dpois(5:15, lambda))
+legend("topright", legend = paste("P(X > 4) =", round(p_greater_4, 3)), col = "red", lwd = 2, bty = "n")
+
+```
+
+
+The probability that in any given hour more than 4 birds will be observed is 0.491.
+
+## e)
+
+Suppose on average you see 2.167 barn swallows and 1.125 American robins per hour. What is the probability that you see 2 or fewer barn swallows or exactly 1 robin in any given hour? Assume that the numbers of swallows and robins are independent.
+
+You would use the additive rule P(A or B) = P(A) + P(B) – P(A and B)
+
+Because swallow and robin numbers are independent, P(A and B) = P(A)*P(B).
+
+```{r}
+
+# P(<=2 swallows and exactly 1 robin)
+ppois(2, 2.167)*dpois(1, 1.125)
+
+# P(<=2 swallows) + P(1 robin) - P(<= 2 swallows AND 1 robin)
+ppois(2, 2.167) + dpois(1, 1.125) - ppois(2, 2.167)*dpois(1, 1.125)
+```
+
+The probability of seeing 2 or fewer barn swallows or exactly 1 robin in any given hour is 0.766.
+
+# Question 2
+Recall that the birdwatchers observed birds each hour for one day (24 hours). They want to know whether or not a black-capped chickadee was observed each hour.
+
+## a)
+
+What discrete distribution would you use for this analysis?
+
+You would use a **binomial distribution** for this analysis.
+
+## b)
+
+What proportion of the hours do the observers see a chickadee? 
+
+```{r}
+sum(birds$Black.capped.chickadee > 0)/24
+```
+
+Observers see a chickadee in 75% of the hours.
+
+The observers go back into the field a separate day for 8 hours and record whether they see chickadees each hour.  
+## c)	
+
+Find the mean, variance, and standard deviation for the number of hours in which chickadees will be seen.  
+
+```{r}
+
+n <- 8     # 8 trials (hours)
+p <- 0.75  # prob. of success (seeing a chickadee in an hour)
+q <- (1-p) # prob. of failure
+
+mean <- n*p
+var <- n*p*q
+sd <- sqrt(var)
+
+cat("mean: ", mean, ", var: ", var, ", sd: ", sd)
+```
+
+The mean number of hours in which chickadees will be seen is 6. The variance for the number of hours is 1.5 and the standard deviation is 1.224.
+
+## d)
+
+What is the probability within that second, 8-hour observation day that there will be exactly 7 hours in which they observe chickadees? Calculate this probability using both the binomial probability formula and dbinom(). 
+
+$$
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}
+$$
+
+
+```{r}
+n <- 8     # 8 trials (hours)
+p <- 0.75  # prob. of success (seeing a chickadee in an hour)
+q <- (1-p) # prob. of failure
+k <- 7
+choose(n,k)*(p^k)*((1-p)^(n-k))
+dbinom(k, n, p)
+```
+
+The probability of having exactly 7 hours in which they observe chickadees is 0.267.
+
+# Question 3 
+
+Assume that the test scores of a college entrance exam fits a normal distribution. Furthermore, the mean test score is 72, and the population standard deviation is 15.2. What is the percentage of students scoring 84 or more in the exam?
+
+Solution: We know that μ=72, and σ=15.2. Because we’d like to know how many students are scoring HIGHER than 84, we are interested in the upper tail of the normal distribution, and thus, we set the lower tail to FALSE. 
+
+In R:
+```{r}
+1 - pnorm(q=84, mean=72, sd=15.2)
+pnorm(84, mean=72, sd=15.2, lower.tail=FALSE)
+```
+
+The answer is 0.2149, meaning that 21.49% of the students will score 84 or higher.
+
+# Question 4 
+
+Use the R pre-packaged  dataset “women”,  answering the following questions:
+
+## a)
+
+What is the z-score that corresponds to a woman with a height of 61 inches? 
+
+```{r}
+z <- (61-mean(women$height))/sd(women$height)
+z
+```
+
+## b)
+
+What is the probability of a woman being 61 inches in height or shorter?
+
+```{r}
+pnorm(z,0,1,TRUE)
+pnorm(61, mean=mean(women$height), sd=sd(women$height))
+```
+
+0.1855467
+
+## c)
+How tall can a woman be and be within the shortest 40% of the population?
+
+```{r}
+# using the standard normal and rearranged Z-score formula:
+qnorm(0.4, 0, 1)*sd(women$height) + mean(women$height)
+
+# or just use height distribution
+qnorm(0.4, mean=mean(women$height), sd=sd(women$height))
+```
+
+Thus a woman must be 63.9 inches or shorter to be within the shortest 40% of the population
+
+
