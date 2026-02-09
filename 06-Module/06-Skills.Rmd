@@ -1,0 +1,98 @@
+---
+title: "Module 6 Skills"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+## Question 1
+
+According to a survey, 53% of households have personal computers. If a random sample of 175 households is selected, what is the probability that more than 85 but fewer than 110 have a personal computer?
+
+
+
+## Question 2
+
+Coke cans are filled so that the actual amounts have a mean of 12 oz and a standard deviation of 0.11 oz. The distribution of amount of coke is unknown.
+
+
+### a) Is the distribution of mean amount of coke in 36 cans normally distributed?
+
+
+### b) What is the mean and standard deviation of $\bar{X}$?
+
+
+### c) Assuming that the amount of coke is normally distributed, find the percent of individual coke with amount between 11.9 to 12.1 oz.
+
+
+### d) Find the percent of mean amount of 36 coke with between 11.9 and 12.1 oz.
+  
+
+
+## Question 3
+
+The first part of this week’s data is found in the Lab5_hikers.csv file. In 2014, 192 hikers hiked the entirety of the 2,650 mile Pacific Crest Trail (PCT). We have data for how far (in miles) a sample of hikers walked each day on average and whether they used trekking poles or not.  
+
+
+### (1) 
+
+Set your working directory, load the data into R. Calculate and report the 85% confidence interval for the proportion of hikers carrying trekking poles.
+
+
+### (2) 
+
+Create an object called miles from the “Avg.miles.per.day” column.
+
+
+#### (a) Calculate the mean of miles
+
+
+#### (b) Variance of miles
+
+
+#### (c) Standard deviation of miles
+
+
+#### (d) Sample size of miles
+
+
+#### (e) What is the best point estimate for average miles per day of the population given these data? 
+
+
+### (3) 
+The formula for calculating margin of error (E) for estimating the population mean ($\mu$) from the sample of data is:
+
+$E = t_c*\frac{s}{\sqrt{n}}$ 
+
+Now assume the miles data are normally distributed.
+
+
+#### (a)
+
+Find the margin of error with 95% confidence.
+
+
+####. (b)
+
+Find the margin of error with 90% confidence.
+
+
+### (4)
+
+Now calculate the 90% and 95% confidence intervals for the population mean distance (in miles).
+
+
+### (5)
+
+Assuming next year’s population of hikers are equally fast but a little more variable, what is the minimum sample size needed to construct a 95% confidence interval for population mean distance with a margin of error (E) of 1.5 miles? Use a standard deviation of 6 miles.
+
+The formula for finding the minimum sample size needed to estimate the population mean ($\mu$) given a confidence level (c) and margin of error (E) is:
+
+$n = (\frac{z_{c}*\sigma}{E})^2$
+
+Where $z_c$ is the z-score critical value associated with the confidence level (c).
+

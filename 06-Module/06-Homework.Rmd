@@ -1,0 +1,256 @@
+---
+title: "Module 6 Homework: Descriptive Statistics & Probability"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+**To submit your completed homework, knit this .Rmd file to a pdf. This will produce an easy-to-read format that includes all written text, all code, and all code output (including plots). You can then submit the rendered PDF file to Gradescope. When submitting to Gradescope, please select the page(s) that include relevant work and output for each question.**
+
+--- 
+**For all numeric answers, include your code or work in text**
+
+# PART A
+
+In this question we will be using the faithful dataset.
+
+```{r}
+data("faithful")
+head(faithful)
+?faithful
+```
+
+The data represents information on the waiting time (waiting: minutes) and eruption duration (eruptions: minutes) of eruptions from the Old Faithful Geyser in Yellowstone National Park. There are 272 observations, and we will be using this dataset to illustrate sampling distributions and the Central Limit Theorem.
+
+
+## Question 1 
+
+Calculate the mean and standard deviation of each of the two variables (waiting , eruptions), treating these data as the whole population. Report the numeric answers rounded to 2 decimal places (6 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 2
+
+Create histograms of each of the two variables (waiting , eruptions), remembering to label the axes appropriately, titling each histogram after the measurement shown.
+
+On each histogram add the mean (red) and median (blue) as vertical lines using abline(v = …) (8 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 3
+
+For each variable comment on the distribution shape and characteristics, and from that, under what conditions would you be able to apply the Central Limit Theorem to samples drawn from these data. (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 4
+
+Use the sample function to create a sample from the waiting column with a sample size, n = 45. Your code should look like
+
+`my.sample <- sample(faithful$waiting, size=45, replace=F)`
+
+From this sample, calculate the sample mean and standard deviation. (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 5
+
+Given the sample size in (Q4) and the population parameters you calculated in (Q1), what does the Central Limit Theorem tell us about the sampling distribution of the sample mean statistic of waiting time (waiting)? In your answer provide a written description, as well as numeric values of the sampling distribution properties, rounded to 3 decimal places (6 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 6
+
+Given the sampling distribution properties reported above, comment on how unusual your sample mean statistic was, using relevant calculations to support your answer. Show your work. (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+Given the sampling distribution properties reported in (Q5) calculate:
+
+
+## Question 7
+
+the probability of obtaining a sample mean within ± 0.5 of the sample mean you obtained in (Q4). Show your work. (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 8
+
+the range of sample means (with the mid-range set to the sample mean you obtained in Q4) you would expect to obtain 60% of the time with a sample size n = 45. Show your work.(4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+# PART B
+
+In this question we will be using the Hearing dataset from canvas. Go to canvas and download this file. 
+
+```{r}
+# Replace file path if necessary
+hearing <- read.csv(file="Hearing_data.csv")
+head(hearing)
+```
+
+Audiologists use standard lists of words to test hearing; the words are calibrated to make all words on the list equally hard to hear. In this study 24 subjects were asked to listen to 200 such words when played at low volume with a noisy background, and to identify what word was played. The Correct column is the number of correct responses across the 200 words played to them.
+
+
+## Question 9
+
+Calculate the mean probability (i.e. across individuals) of correctly identifying the word that was played. Round your answer to 3 decimal places (2 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 10
+
+Evaluate the conditions for applying the Normal approximation to the Binomial, and comment on each criteria and whether they are met (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 11
+
+Given your answers to (Q9) and (Q10), calculate the expected mean and standard deviation of the Normal approximation for this data. Round your answers to 2 decimal places. (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 12
+
+Given the values you calculated in (Q11), apply the normal approximation to calculate the expected proportion of individuals that would get a score between 40 and 60 (inclusive), remembering to apply continuity corrections. Round your answer to 3 decimal places (4 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+# PART C
+
+In this question we will be using the National Parks Images dataset available on canvas.
+
+```{r}
+# Replace file path if necessary
+nat.parks <- read.csv(file="nationalparks_images.csv")
+head(nat.parks)
+```
+
+A researcher wanted to find out if people are more likely to see and photograph wildlife (bears, marmots, elk, etc) inside vs outside National Parks in Washington State. She collected images from Instagram taken throughout the Cascade mountain range in Washington, and identified whether images were captured inside a National Park or in National Forest areas, which have different legal protections (e.g. dogs and timber harvest are not permitted in National Parks), as well as whether images contained wildlife.
+
+
+## Question 13
+
+For the National Park and non-National Park areas, calculate and report the
+
+- Sample size
+
+- Number of positive detections of wildlife
+
+- Probability wildlife has shown in an image
+
+(6 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 14
+
+Given the answers in (Q13) evaluate whether these data meet the criteria to apply the normal approximation to the sample proportion statistics (5 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 15
+
+Using your answer in (Q13), calculate a 90% confidence interval for the proportion of times images contained wildlife for each of the National Parks, and National Forest areas (non-National Park areas). In doing so, report the 
+
+- Margin of error
+
+- Confidence interval bounds
+
+Show your working and round your answers to 3 decimal places (12 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+## Question 16
+
+Compare the estimates and confidence intervals you obtained for the proportion of images containing wildlife in National Parks compared to National Forests, and describe any differences and whether you think those differences are indicative of a genuine difference in Wildlife photography between the two locations (3 pts)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
+
+
+
+

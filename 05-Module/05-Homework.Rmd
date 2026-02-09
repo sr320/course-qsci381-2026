@@ -8,7 +8,11 @@ editor_options:
     wrap: 72
 ---
 
-**For all numeric answers, show your work using code or text**
+**To submit your completed homework, knit this .Rmd file to a pdf. This will produce an easy-to-read format that includes all written text, all code, and all code output (including plots). You can then submit the rendered PDF file to Gradescope. When submitting to Gradescope, please select the page(s) that include relevant work and output for each question.**
+
+--- 
+
+**For all numeric answers, include your code or work in text**
 
 # PART A
 
