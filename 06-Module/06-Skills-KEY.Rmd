@@ -1,0 +1,211 @@
+---
+title: "Module 6 Skills -- KEY"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Q1:
+
+According to a survey, 53% of households have personal computers. If a random sample of 175 households is selected, what is the probability that more than 85 but fewer than 110 have a personal computer?
+
+```{r}
+p <- 0.53
+n <- 175
+qlow <- 85
+qup <- 110
+
+# note that pbinom is cumulative *inclusive* (i.e. cumulative
+# probability of <= q). Since we do not want to include 85 or 110
+# (we want P(85 < q < 110))
+# in our probability we need to subtract 1 from qup, but leave qlow 
+# alone. This means we're performing:
+# P(<110) - P(<=85)
+#
+pbinom(q=qup-1, size=n, prob=p) - pbinom(q=qlow, size=n, prob=p)
+
+# Using dbinom
+sum(dbinom(x=c((qlow+1):(qup-1)), size=n, prob=p))
+
+# Using normal approximation
+### Check assumptions
+n*p > 10
+n*(1-p) > 10
+
+### True, so: 
+mean <- n*p
+sd <- sqrt(n*p*(1-p))
+
+### Binomial P(85 < x < 110) = P(86 <= x <= 109) 
+### continuity correction:     P(85.5 <= x <= 109.5)
+### Normal approximation:      P(85.5 < x < 109.5)
+
+pnorm(109.5, mean=mean, sd=sd) - pnorm(85.5, mean=mean, sd=sd)
+
+```
+
+## Q2:
+
+Coke cans are filled so that the actual amounts have a mean of 12 oz and a standard deviation of 0.11 oz. The distribution of amount of coke is unknown.
+
+### a) Is the distribution of mean amount of coke in 36 cans normally distributed?
+
+n > 30, so CLT applies. The distribution of means is approximately normal/
+
+### b) What is the mean and standard deviation of $\bar{X}$?
+
+According to CLT:
+```{r}
+mean <- 12
+sd <- 0.11
+n <- 36
+se <- sd/sqrt(n)
+
+mean
+se
+```
+
+### c) Assuming that the amount of coke is normally distributed, find the percent of individual coke with amount between 11.9 to 12.1 oz.
+
+```{r}
+pnorm(12.1, mean, sd) - pnorm(11.9, mean, sd)
+```
+
+### d) Find the percent of mean amount of 36 coke with between 11.9 and 12.1 oz.
+
+```{r}
+pnorm(12.1, mean, se) - pnorm(11.9, mean, se)
+```
+
+## Q3:
+
+The first part of this week’s data is found in the Lab5_hikers.csv file. In 2014, 192 hikers hiked the entirety of the 2,650 mile Pacific Crest Trail (PCT). We have data for how far (in miles) a sample of hikers walked each day on average and whether they used trekking poles or not.  
+
+### (1)
+
+Set your working directory, load the data into R. Calculate and report the 85% confidence interval for the proportion of hikers carrying trekking poles.
+
+```{r}
+hike <- read.csv("../Data/Lab5_hike.csv")
+n_yes <- nrow(hike[hike$Trekking.poles == "yes",])
+n <- nrow(hike)
+# proportion of hikers carrying poles
+p <- n_yes/n
+
+# Can we use a normal approximation?
+n*p > 10
+n*(1-p)> 10
+
+# Both true, so we can!
+mean <- n*p
+# Recall, CI based on proportion is: E = z_crit*sigma, where sigma = sqrt((p*(1-p))/n)
+
+# Recall the 15% remaining outside the CI is split on both sides ("two-tailed")
+z_crit_low <- qnorm((1-0.85)/2, 0, 1)
+z_crit_up <- qnorm((1-0.85)/2, 0, 1, lower.tail = FALSE)
+
+sigma <- sqrt((p*(1-p))/n)
+
+CI_low <- p + z_crit_low*sigma
+CI_up <- p + z_crit_up*sigma
+
+# 85% CI for *proportion* of hikers carrying poles
+CI_low
+CI_up
+```
+
+### (2)
+
+#### a) Create an object called miles from the “Avg.miles.per.day” column.
+
+```{r}
+miles <- hike$Avg.miles.per.day
+```
+	
+#### b) Calculate the mean of miles
+
+```{r}
+mean(miles)
+```
+
+#### c) Variance of miles
+
+```{r}
+var(miles)
+```
+
+#### d) Standard deviation of miles
+
+```{r}
+sd(miles)
+```
+
+#### e) Sample size of miles
+
+```{r}
+length(miles)
+```
+
+#### f) What is the best point estimate for average miles per day of the population given these data? 
+
+The mean, 25.81
+
+### (3) 
+
+The formula for calculating margin of error (E) for estimating the population mean ($\mu$) from the sample of data is:
+
+$E = t_c*\frac{s}{\sqrt{n}}$ 
+
+Now assume the miles data are normally distributed.
+
+#### a) Find the margin of error with 95% confidence.
+
+```{r}
+t_crit_95 <- qt((1-0.95)/2, df=length(miles)-1, lower.tail=FALSE)
+E_95 <- t_crit_95*sd(miles)*(1/sqrt(length(miles)))
+E_95
+```
+
+#### b) Find the margin of error with 90% confidence.
+
+```{r}
+t_crit_90 <- qt((1-0.90)/2, df=length(miles)-1, lower.tail=FALSE)
+E_90 <- t_crit_90*sd(miles)*(1/sqrt(length(miles)))
+E_90
+```
+
+### (4)
+
+Now calculate the 90% and 95% confidence intervals for the population mean distance (in miles).
+
+```{r}
+paste(mean(miles)-E_95, "to", mean(miles)+E_95)
+paste("")
+paste(mean(miles)-E_90, "to", mean(miles)+E_90)
+```
+
+### (5) 
+
+Assuming next year’s population of hikers are equally fast but a little more variable, what is the minimum sample size needed to construct a 95% confidence interval for population mean distance with a margin of error (E) of 1.5 miles? Use a standard deviation of 6 miles.
+
+The formula for finding the minimum sample size needed to estimate the population mean ($\mu$) given a confidence level (c) and margin of error (E) is:
+
+$n = (\frac{z_{c}*\sigma}{E})^2$
+
+Where $z_c$ is the z-score critical value associated with the confidence level (c).
+
+```{r}
+ci <- 0.95
+E <- 1.5
+sd <- 6
+z_crit <- qnorm(((1-ci)/2), mean=0, sd=1, lower.tail=FALSE)
+n <- ((z_crit*sd)/E)^2
+n
+
+```
+
+So minimum sample size is 62.
+

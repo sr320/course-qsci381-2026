@@ -76,7 +76,7 @@ Now assume the miles data are normally distributed.
 Find the margin of error with 95% confidence.
 
 
-####. (b)
+#### (b)
 
 Find the margin of error with 90% confidence.
 
