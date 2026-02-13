@@ -124,7 +124,7 @@ Your final answer here
 
 # PART B
 
-In this question we will be using the Hearing dataset from canvas. Go to canvas and download this file. 
+In this question we will be using the Hearing datasets.
 
 ```{r}
 # Replace file path if necessary
@@ -181,7 +181,7 @@ Your final answer here
 
 # PART C
 
-In this question we will be using the National Parks Images dataset available on canvas.
+In this question we will be using the National Parks Images dataset.
 
 ```{r}
 # Replace file path if necessary
