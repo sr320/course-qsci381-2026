@@ -1,0 +1,160 @@
+---
+title: "Module 7 Skills"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+# Question 1
+
+In this question we will be using the Lab6skills_bp.csv dataset in to look at differences in blood pressure between smokers and non-smokers
+
+```{r}
+bp<- read.csv(file = "Lab6skills_bp.csv")
+```
+
+*Systolic blood pressure, weight and smoking status for a sample of 500 adults*
+
+To make things simpler, we will only look at individuals who are in the normal healthy range. Run this line of code to create a subsetted dataset called bp.data
+
+```{r}
+bp.data <- bp[bp$Overwt == 0,]
+```
+
+For all parts of this question use the bp.data dataset.
+
+We want to determine confidence intervals for Systolic blood pressure for smokers, versus non-smokers, and we will assume that Systolic blood pressures are normally distributed.
+
+## (1a) 
+
+For the smokers (Smoke == 1) and the non-smokers (Smoke == 0) calculate and report the following:
+
+- sample mean
+- standard deviation
+- sample size
+
+Round all of your answers to 2 decimal places 
+
+## (1b) 
+
+Using your answers from (1a) calculate the standard error of the mean for smokers and non-smokers. Round your answer to two decimal places 
+
+## (1c) 
+
+Given we are interested in mean blood pressure, which distribution would we use to calculate a confidence interval for the population parameter
+ 
+## (1d) 
+
+Using your answers thus far, for a 95% confidence interval calculate and report the 
+
+- Margin of error
+- Confidence interval bounds
+
+of mean Systolic blood pressure for smokers and non-smokers. Show your working and round your answers to 2 decimal places
+
+## (1e)
+
+Comparing the confidence intervals for smokers and non-smokers, explain the degree to which you think smoking affects systolic blood pressure
+
+# Question 2
+
+The second part of this week’s data is found in the `Lab6_litter.csv` file. Reports from the Okanagan-Wenatchee National Forest claim that the average litter depth in riparian areas is equal to 2.50 cm. Based on your experience in the field you question whether the claim is accurate.  
+
+To test the claim, you have randomly sampled 106 riparian litter depths. You will evaluate the claim at $\alpha$ = 0.10.
+
+## (2a)
+
+State the null and alternative hypotheses.
+
+## (2b)
+
+Identify which represents the claim.
+
+## (2c)
+
+Which sampling distribution (of standardized test statistic) is appropriate to test this hypothesis?
+
+## (2d)
+
+What is type 1 error? What is the probability of making type one error in this situation?
+
+Evaluate the claim at $\alpha$ = 0.10.
+
+## (2e) 
+
+Find the critical value
+
+## (2f)
+
+Find the confidence interval. Note: Values outside this interval fall into the “rejection region” on the original scale.
+
+## (2g)
+
+Calculate the appropriate standardized test statistic $t = \frac{x-\mu}{\frac{s}{\sqrt(n)}}$
+
+## (2h) 
+
+Calculate the p-value for that test statistic.
+
+## (2i) 
+
+Make a decision to reject or fail to reject the claim. State your results in words and mathematically and interpret your results.
+
+# Question 3
+
+Researchers conducted a survey of 450 undergraduates in large introductory courses at either Mississippi State University or the University of Mississippi. The primary interest for the researchers was factors relating to whether or not a student has ever overdrawn a checking account. These data can be found in the Lab6skills_credit.csv file.
+
+First, we will remove all missing values. Copy the line of code below to create a subset of the data that only contains complete data
+
+```{r}
+cred<- read.csv(file = "Lab6skills_credit.csv")
+cred.dat <- cred[!is.na(cred$Overdrawn),]  #we lose 3 observations
+```
+
+Use the credit.df dataset for all remaining parts of the question
+
+## (3a) 
+
+For the variable describing whether a student had ever been Overdrawn report the
+
+- Sample size
+- Number of positive cases (Overdrawn == 1)
+- Probability a student goes overdrawn
+
+Round your answers to 3 decimal places
+
+## (3b)
+
+Next Gen Personal Finance report that 20% of consumers overdraw their accounts annually. We wish to test the hypothesis that the proportion of undergraduates that go overdrawn is greater than reported by Next Gen Personal Finance.
+
+State the null and alternate hypotheses, both as statements, and mathematically using equalities (=, $\geq$, $\leq$) and inequalities ($\neq$, <, >)
+
+## (3c)
+
+Which sampling distribution (of standardized test statistic) would you use to test this hypothesis.
+
+## (3d)
+
+Calculate the mean and standard error of the sampling distribution of sample proportion. Round your answer to 3 decimal places.
+
+## (3e)
+
+At a significance level of $\alpha$ = 0.01, test the null hypothesis by calculating the:
+
+- test statistic
+- standardized test statistic
+- critical value associated with this significance level
+- the p-value for the standardized test statistic
+
+Show your working (including R code if used) and round all of your answers to 3 decimal places.
+
+## (3f)
+
+Using your answer in (3e) make a decision to reject or fail to reject the null hypothesis. State your results in words and mathematically 
+
+
+

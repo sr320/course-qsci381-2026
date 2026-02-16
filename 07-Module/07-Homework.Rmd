@@ -1,0 +1,107 @@
+---
+title: "Module 7 Homework"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# PART A
+
+Hawai'i is the most isolated archipelago geographically on the planet. With the arrival of people Hawai'i has become a hotspot of biological invasion with dramatic changes to the native ecosystems. The introduction of predators (mongoose and cats) has been particularly devastating to native birds.
+
+Goltz et al. (2008) conducted a feral cat home range study on Mauna Kea, Hawai'i. They were able to reliably estimate the home range of nine males. The results are as follows (in square kilometers):
+
+home ranges: 11.67, 20.5, 12.79, 11.76, 8.75, 8.31, 14.82, 16.31, 7.96
+
+Throughout this question you may assume that cat home ranges are normally distributed.
+
+We want to determine confidence intervals for the mean home range size of male feral cats on Mauna Kea, Hawai'i.
+
+## Question 1
+
+For the data of male cat home ranges, enter the data into R and calculate and report the following:
+
+1.  sample mean (1 pt)
+2.  standard deviation (1 pt)
+
+## Question 2
+
+Given the information provided, can the central limit theorem be applied in this scenario? (2 pts)
+
+
+## Question 3
+
+For a confidence level of 90% calculate the **margin of error** (4 pts)
+
+## Question 4
+
+For a confidence level of 90% calculate the **confidence interval bounds** (3 pts)
+
+## Question 5
+
+Provide a written statement regarding the range of values that are plausible with 90% confidence for the mean home range of males cats given this information (2 pts)
+
+## Question 6
+
+Repeat these calculations for a confidence level of 99%, providing the 99% confidence interval, and identify whether a mean home range of 20 square km is plausible to a 99% confidence (5 pts)
+
+
+# PART B: z-test
+
+It is claimed that 37% of American citizens have a valid US passport. To test this claim, you survey 348 people and get the following data: n = 348 x = 141 (responded Yes: has a valid passport)
+
+## Question 7
+
+Write out the null and alternate hypotheses of this claim (2 pts)
+
+## Question 8
+
+Calculate the test statistic, and the standardized test statistic for performing a one-sample z-test on this data (4 pts)
+
+## Question 9
+
+Calculate the critical value, zcrit, for rejecting the null hypothesis at a significance level alpha = 0.01 (2 pts)
+
+## Question 10
+
+Given your answers in (Questions 7 - 9) what would you conclude regarding the initial claim. In your answer make sure to refer to the components of this test (statistic, claim, test thresholds) to support your answer (3 pts)
+
+# PART C: t-test
+
+In this question we will look at a dataset of morphological measurements taken from two species of seaduck: Surf scoter and White-winged scoter. We will be using this dataset to examine mean bill lengths (mm).
+
+Download the data from canvas and read it into R
+
+```{r}
+# Replace file path if necessary
+scot <- read.csv(file="qsci_scoters.csv")
+```
+
+## Question 11
+
+Calculate summary statistics (mean, sd, and sample size) of bill length for each species given the sample data (6 pts)
+
+## Question 12
+
+For each species, plot a histogram of bill lengths, making sure to label axes accordingly. Based on these do you think bill length measurements are normally distributed for each species? (5 pts)
+
+## Question 13
+
+I claim that the mean length of Surf Scoter bills is at least 39 mm. What are the null and alternate hypotheses related to this claim, and which hypothesis is represented by my claim (3 pts)
+
+## Question 14
+
+For the claim in (Question 13) related to Surf Scoters, use the summary statistics calculated in (Question 11) to perform a one-sample t-test. In doing so, calculate and present the:
+
+i.  Test statistic (2 pts)
+ii. Standard error of the test statistic (2 pts)
+iii. Standardised test statistic (1 pt)
+iv. The critical value for rejecting the null hypothesis at a significance level alpha = 0.05 (3 pts)
+v.  The p-value of the observed test statistic (2 pts)
+
+## Question 15
+
+Given the answers to Question 14 draw a conclusion regarding the original claim at a significance level alpha = 0.05 (2 pts)
