@@ -8,6 +8,10 @@ editor_options:
     wrap: 72
 ---
 
+**To submit your completed homework, knit this .Rmd file to a pdf. This will produce an easy-to-read format that includes all written text, all code, and all code output (including plots). You can then submit the rendered PDF file to Gradescope. When submitting to Gradescope, please select the page(s) that include relevant work and output for each question.**
+
+--- 
+
 # PART A
 
 Hawai'i is the most isolated archipelago geographically on the planet. With the arrival of people Hawai'i has become a hotspot of biological invasion with dramatic changes to the native ecosystems. The introduction of predators (mongoose and cats) has been particularly devastating to native birds.
