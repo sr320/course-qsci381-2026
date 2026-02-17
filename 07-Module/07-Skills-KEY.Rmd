@@ -1,0 +1,424 @@
+---
+title: "Module 7 Skills"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+# Question 1
+
+In this question we will be using the Lab6skills_bp.csv dataset in to look at differences in blood pressure between smokers and non-smokers
+
+```{r}
+bp<- read.csv(file = "Lab6skills_bp.csv")
+```
+
+*Systolic blood pressure, weight and smoking status for a sample of 500 adults*
+
+To make things simpler, we will only look at individuals who are in the normal healthy range. Run this line of code to create a subsetted dataset called bp.data
+
+```{r}
+bp.data <- bp[bp$Overwt == 0,]
+```
+
+For all parts of this question use the bp.data dataset.
+
+We want to determine confidence intervals for Systolic blood pressure for smokers, versus non-smokers, and we will assume that Systolic blood pressures are normally distributed.
+
+## (1a) 
+
+For the smokers (Smoke == 1) and the non-smokers (Smoke == 0) calculate and report the following:
+
+- sample mean
+- standard deviation
+- sample size
+
+Round all of your answers to 2 decimal places 
+
+```{r}
+head(bp.data)
+str(bp.data)
+smoke<-bp.data$SystolicBP[bp.data$Smoke == 1]
+nsmoke<-bp.data$SystolicBP[bp.data$Smoke == 0]
+
+# For smokers:
+mu.s<- mean(smoke)
+mu.s
+
+sd.s<- sd(smoke)
+sd.s
+
+n.s<- length(smoke)
+n.s
+
+# For non-smokers:
+mu.ns<- mean(nsmoke)
+mu.ns
+
+sd.ns<- sd(nsmoke)
+sd.ns
+
+n.ns<- length(nsmoke)
+n.ns
+
+```
+
+Final answers:
+
+**Smokers**: mean = 142.71, sd = 23.93, n = 90.
+**Non-smokers**: mean = 130.38, sd = 28.91, n = 97.
+
+
+## (1b) 
+
+Using your answers from (1a) calculate the standard error of the mean for smokers and non-smokers. Round your answer to two decimal places 
+
+```{r}
+# For smokers:
+se.s<- sd.s/sqrt(n.s)
+se.s
+
+# For non-smokers:
+se.ns<- sd.ns/sqrt(n.ns)
+se.ns
+```
+
+**Final answers:**
+
+**Smokers**: std.error = 23.93/sqrt(90) = 2.52
+**Non-Smokers**: std.error = 28.91/sqrt(97) = 2.94
+
+## (1c) 
+
+Given we are interested in mean blood pressure, which distribution would we use to calculate a confidence interval for the population parameter
+
+**We would use a t-distribution.**
+
+ 
+## (1d) 
+
+Using your answers thus far, for a 95% confidence interval calculate and report the 
+
+- Margin of error
+- Confidence interval bounds
+
+of mean Systolic blood pressure for smokers and non-smokers. Show your working and round your answers to 2 decimal places
+
+**The margin of error is given as the t-multiplier multiplied by the standard error (SE).**
+
+**For smokers:**
+Our sample size is n = 90, therefore we use a t-distribution with df = 90 – 1 = 89. As we want a 95% CI we use the 0.025, or the 0.975 quantiles of that t-distribution to get the t-multiplier
+
+```{r}
+tcrit.s<- qt((1-(1-.95)/2), df=89) #or
+tcrit.s<- qt((.95+.05/2), df=89)
+tcrit.s
+
+# For the smokers the margin of error E is qt(0.975, df=89) multiplied by the standard error
+
+e.s <- tcrit.s * se.s
+e.s
+
+# As the 95% CI is the mean ± E we have
+mu.s - e.s #95% lower limit for smokers
+mu.s + e.s #95% upper limit for smokers
+```
+
+Lower = 142.71 – 5.01 = **137.7**
+Upper = 142.71 + 5.01 = **147.7**
+
+
+**For non-smokers:**
+
+Using the same process, we now have a t-distribution with df = n-1 = 97-1 = 96
+
+```{r}
+tcrit.ns<- qt((.95+.05/2), df=96)
+tcrit.ns
+
+# Which gives a margin of error
+e.ns <- tcrit.ns * se.ns
+e.ns
+
+mu.ns - e.ns #95% lower limit for nonsmokers
+mu.ns + e.ns #95% upper limit for nonsmokers
+```
+
+Lower = 130.38 – 5.83 = **124.55**
+Upper = 130.38 + 5.84 = **136.21**
+
+## (1e)
+
+Comparing the confidence intervals for smokers and non-smokers, explain the degree to which you think smoking affects systolic blood pressure
+
+**The 95% CI of mean blood pressure for smokers: 137.7 to 147.7**
+
+**The 95% CI of mean blood pressure for non-smokers: 124.55 to 136.21**
+
+**As the 95% confidence intervals don’t overlap, we can state that with 95% confidence that the mean Systolic blood pressure for smokers is higher than for non-smokers.**
+
+# Question 2
+
+The second part of this week’s data is found in the `Lab6_litter.csv` file. Reports from the Okanagan-Wenatchee National Forest claim that the average litter depth in riparian areas is equal to 2.50 cm. Based on your experience in the field you question whether the claim is accurate.  
+
+To test the claim, you have randomly sampled 106 riparian litter depths. You will evaluate the claim at $\alpha$ = 0.10.
+
+## (2a)
+
+State the null and alternative hypotheses.
+
+**H0: mean litter depth = 2.50cm, mu = 2.50cm**
+
+**HA: mean litter depth =/ 2.50cm, mu =/ 2.50cm**
+
+**This is a two-tailed test.**
+
+## (2b)
+
+Identify which represents the claim.
+
+**H0 represent the claim.**
+
+## (2c)
+
+Which sampling distribution (of standardized test statistic) is appropriate to test this hypothesis?
+
+**t-distribution since we are testing a mean and n>30**
+
+## (2d)
+
+What is type 1 error? What is the probability of making type one error in this situation?
+
+Evaluate the claim at $\alpha$ = 0.10.
+
+**Type 1 error is the probability of incorrectly rejecting H0. The probability of making type I error is = alpha = 0.10**
+
+## (2e) 
+
+Find the critical value
+
+**Type of test: two-tailed t test, df = 105, so qt(1-alpha/2, df=n-1) and -qt(1-alpha/2, df=n-1).**
+
+```{r}
+tcrit<- qt((1-0.1/2),df=105) #qt((1 - alpha/2), n-1)
+tcrit
+
+# OR
+tcrit<- qt((.9+.1/2),105) #qt((c + alpha/2), n-1)
+```
+
+**So the critical values are 1.659495 and -1.659495.**
+
+## (2f)
+
+Find the confidence interval. Note: Values outside this interval fall into the “rejection region” on the original scale.
+
+**Here we want to find 90% CI for a population mean.**
+
+```{r}
+litter<- read.csv(file = "Lab6_litter.csv")
+xbar<- mean(litter$Litterdepth)#sample mean of litter depth
+xbar
+
+tcrit<- qt((1-0.1/2),105) #qt((1 - alpha/2), n-1)
+tcrit
+
+sd.lit<- sd(litter$Litterdepth) #sd of litter depth
+sd.lit
+
+n.lit<- 106 #sample size
+
+se.lit<- sd.lit/sqrt(n.lit) #calculating standard error
+se.lit
+
+e.lit<- tcrit*se.lit #Calculating margin of error (E)
+e.lit
+
+print("upper and lower CIs:")
+xbar + e.lit #Upper Confidence Limit
+xbar - e.lit #Lower Confidence Limit
+
+```
+
+**Mean litter depth has plausible values from 1.96 to 2.37 cm with 90% confidence with a best estimate of 2.17 cm**
+
+## (2g)
+
+Calculate the appropriate standardized test statistic $t = \frac{x-\mu}{\frac{s}{\sqrt(n)}}$
+
+```{r}
+xbar<- mean(litter$Litterdepth) #sample mean of litter depth
+xbar
+
+mu.lit<- 2.50 #claimed population mean under H0
+sd.lit<- sd(litter$Litterdepth) #sd of litter depth
+sd.lit
+
+se.lit<- sd.lit/sqrt(n.lit) #calculating SE
+se.lit
+
+t.lit<- (xbar - mu.lit)/se.lit # t-score
+t.lit
+```
+
+**t=-2.69**
+
+## (2h) 
+
+Calculate the p-value for that test statistic.
+
+**The p-value is the probability of getting a test statistic at least this extreme if the null hypothesis were true. We can evaluate this by looking at the probability of getting a standardized test statistic < -2.686683 or 2.686683 from a t-distribution with df = 105**
+
+**Type of test: two-tailed t test, df = 105, so use 2*pt(-abs(t-score), df=n-1).**
+
+```{r}
+p.lit<- 2 * pt(-abs(t.lit), df= 105)
+p.lit
+```
+
+**p = 0.008**
+
+## (2i) 
+
+Make a decision to reject or fail to reject the claim. State your results in words and mathematically and interpret your results.
+
+**We reject the null hypothesis (H0) that mean litter depth = 2.50 because our calculated p-value (0.008) < alpha (0.10); thus, we do not support the claim that mean litter depth = 2.50.**
+
+# Question 3
+
+Researchers conducted a survey of 450 undergraduates in large introductory courses at either Mississippi State University or the University of Mississippi. The primary interest for the researchers was factors relating to whether or not a student has ever overdrawn a checking account. These data can be found in the Lab6skills_credit.csv file.
+
+First, we will remove all missing values. Copy the line of code below to create a subset of the data that only contains complete data
+
+```{r}
+cred<- read.csv(file = "Lab6skills_credit.csv")
+cred.dat <- cred[!is.na(cred$Overdrawn),]  #we lose 3 observations
+```
+
+Use the credit.df dataset for all remaining parts of the question
+
+## (3a) 
+
+For the variable describing whether a student had ever been Overdrawn report the
+
+- Sample size
+- Number of positive cases (Overdrawn == 1)
+- Probability a student goes overdrawn
+
+Round your answers to 3 decimal places
+
+```{r}
+cred.n<- nrow(cred.dat)
+cred.n #sample size
+
+cred.over<- length(cred.dat$Overdrawn[cred.dat$Overdrawn==1])
+cred.over #number of overdrawn students
+
+cred.ph<- cred.over/cred.n
+cred.ph #observed sample proportion
+```
+
+
+Sample size n = **447**
+
+Overdrawn = **60**
+
+Sample probability = **0.134**
+
+## (3b)
+
+Next Gen Personal Finance report that 20% of consumers overdraw their accounts annually. We wish to test the hypothesis that the proportion of undergraduates that go overdrawn is greater than reported by Next Gen Personal Finance.
+
+State the null and alternate hypotheses, both as statements, and mathematically using equalities (=, $\geq$, $\leq$) and inequalities ($\neq$, <, >)
+
+## (3c)
+
+Which sampling distribution (of standardized test statistic) would you use to test this hypothesis.
+
+```{r}
+cred.p0<- 0.2 #population parameter
+cred.n * cred.p0
+
+cred.n * (1-cred.p0)
+```
+
+**As the response is a population proportion, and the normal approximation to the binomial distribution ($n*p_{0}\geq 10$ and $(1-p_{0})\geq10)$ we will use a standard normal distribution.**
+
+## (3d)
+
+Calculate the mean and standard error of the sampling distribution of sample proportion. Round your answer to 3 decimal places.
+
+**As our hypothesis has $p_{0}=0.1$ our sampling distribution has mean = $p_0$ = 0.2**
+
+**$SE = \frac{\sqrt{p(1-p)}}{\sqrt{n}} = 0.0189$**
+
+```{r}
+cred.p0<- 0.2 #population parameter
+cred.se<- sqrt(cred.p0*(1-cred.p0))/sqrt(cred.n)
+cred.se #standard error
+```
+
+## (3e)
+
+At a significance level of $\alpha$ = 0.01, test the null hypothesis by calculating the:
+
+- test statistic
+- standardized test statistic
+- critical value associated with this significance level
+- the p-value for the standardized test statistic
+
+Show your working (including R code if used) and round all of your answers to 3 decimal places.
+
+**The test statistic is the observed proportion = 0.134**
+
+**The standardized test statistic is the z-score**
+
+$z = \frac{point\ estimate-null}{SE} = \frac{\hat{p}-\mu_{p}}{SE_{p}} = \frac{0.134-0.2}{0.0189} = -3.492$
+
+OR
+
+```{r}
+cred.z <- (cred.ph - 0.2)/cred.se
+cred.z
+```
+
+**For critical value: **
+
+The significance level of alpha = 0.01.
+Type of test: right-tailed z test, so use qnorm(1-alpha).**
+```{r}
+cred.zc<- qnorm(1-0.01)
+cred.zc
+```
+
+This gives a **rejection region of > 2.326.**
+
+
+**The p-value**
+
+Type of test: right-tailed z test, so use pnorm(-(z-score))
+
+```{r}
+cred.pv <- pnorm(-cred.z)
+cred.pv
+```
+
+**p = 0.99**
+
+## (3f)
+
+Using your answer in (3e) make a decision to reject or fail to reject the null hypothesis. State your results in words and mathematically 
+
+**As the standardized test statistic 0.134 falls outside the critical region (> 2.326) for alpha = 0.01**
+
+OR
+
+**As the p-value of 0.99 is greater than the significance level of alpha = 0.01**
+
+**We fail reject the null hypothesis that the proportion of undergraduates that go overdrawn is less than or equal to 0.2, and do not support the claim that the proportion of undergraduates that go overdrawn is greater than 0.28**
+
+
