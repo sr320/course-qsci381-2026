@@ -1,0 +1,364 @@
+---
+title: "Module 8 Homework: Descriptive Statistics & Probability"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+**To submit your completed homework, knit this .Rmd file to a pdf. This will produce an easy-to-read format that includes all written text, all code, and all code output (including plots). You can then submit the rendered PDF file to Gradescope. When submitting to Gradescope, please select the page(s) that include relevant work and output for each question.**
+
+--- 
+
+# Part A
+
+In this question we will be using the FlightResponse dataset
+
+```{r}
+FlightResponse <- read.csv(file="FlightResponse.csv")
+```
+
+A 1994 study collected data on the effects of air traffic on the behavior of the Pacific Brant (a small migratory goose). The data represent the flight response to helicopter "overflights" to see what the relationship between the proximity of a flight, both lateral and altitudinal, would be to the propensity of the Brant to flee the area. Each case represents a flock of Brant that has been observed during one overflight in the study.
+
+The data contains the following columns:
+
+- `Obs.ID`: Observation (flock) identifier number
+- `AltCat`: Altitude category as an identifier of whether the overflight was at a low or high
+altitude
+- 'mFlight': a binary (0,1) variable indicating whether the flock did (1) or didn’t (0) take flight
+
+We will examine differences between high and low altitude overflights
+
+```{r}
+low.df <- FlightResponse[FlightResponse$AltCat == "low",]
+high.df <- FlightResponse[FlightResponse$AltCat == "high",]
+```
+
+Use low.df and high.df to answer the following questions
+
+## (1) For low and high overflights, calculate and present the
+
+- Sample size
+
+```{r}
+#Your Code Here
+```
+
+- Number of overflights that lead to Brant fleeing the area
+
+```{r}
+#Your Code Here
+```
+
+- Proportion of overflights that lead to Brant fleeing the area
+
+```{r}
+#Your Code Here
+```
+
+
+Round your answers to 3 decimal places (3 pts)
+
+## (2) 
+
+The researcher claims that for Brant, the probability of disturbance is no different between high overflights and low overflights. For this claim write out the null and alternate hypothesis both as statements, and mathematically (i.e. using =, >, <, $\neq$, $\leq$, $\geq$), using ph and pl to represent the probability of disturbance for high and low overflights, respectively. In your answer note which hypothesis represents the claim. (3 pts)
+
+
+## (3) Evaluate the conditions for applying a two-sample z-test to test the hypotheses given in (Question 2). 
+
+Include the calculation steps, and whether criteria are met, and finally whether this dataset can be analyzed using a two-sample z-test (4 pts)
+
+
+## (4) Perform a two sample z-test of the hypotheses given in (Question 2) for a significance level of $\alpha$ = 0.01. 
+
+Show your work, round all numeric values to 3 decimal places, and in your answer present: 
+
+-Whether the test is left-, right-, or two-tailed
+
+-The test statistic
+
+```{r}
+#Your Code Here
+```
+
+-The standard error of the test-statistic
+
+```{r}
+#Your Code Here
+```
+
+-The standardized test statistic
+
+```{r}
+#Your Code Here
+```
+
+-The critical region(s) for the given significance level
+
+```{r}
+#Your Code Here
+```
+
+-The associated p-value
+
+```{r}
+#Your Code Here
+```
+
+(10 pts)
+
+## (5) Using your answers in (Question 4) make a decision to reject or fail to reject the null hypothesis. 
+
+State your answer with reference to the original claim and how overflights affect Brant (3 pts)
+
+
+# Part B
+
+In this example we will be using the North Carolina births dataset. This data consists of observations from a random selection of births in North Carolina in 2001.We will be examining birth weights and whether they differ between mothers who were smokers or not.
+
+Firstly, we will create two subsets, one consisting of birth records for non-smokers, and one for smokers and we will exclude premature births
+
+```{r}
+births <- read.csv(file="north_carolina_births.csv")
+smoker <- births[births$habit == "smoker" & births$premie == "full term",]
+nonsmoker <- births[births$habit == "nonsmoker" & births$premie == "full term",]
+```
+
+Use the smoker and nonsmoker datasets throughout the rest of the question.
+
+## (6) 
+
+Plot histograms of the birth weights (in pounds; weight) for children from smoking and non-smoking mothers, labelling the axes, and giving each plot a title based on smoking status. Use ... breaks = seq(from=3, to=12, by=0.25)... in your hist() call for both. Based on the histograms, do birth weights appear to be normally distributed? (4 pts)
+
+```{r}
+#Your Code Here
+```
+
+
+
+## (7) For both smoking and non-smoking datasets present the sample size, mean, and standard deviation of birth weights. Round your answers to 1 decimal place (3 pts).
+
+```{r}
+#Your Code Here
+```
+
+
+## (8) Perform an F-test on the variance in birth weight between non-smoking mothers and smoking mothers 
+
+testing the null hypothesis (H0): variance in birth weights are equal for babies born to smoking mothers, versus the alternative that the variance in birth weights are different for non-smoking mothers.
+
+We will test this hypothesis at the 10% significance level, $\alpha$ = 0.1. Use the non-smoker variance as the numerator, and the smoker variance as the denominator. In your answer show your working, and present numeric values for:
+
+- The F test statistic
+
+```{r}
+#Your Code Here
+```
+
+- The degrees of freedom of the F distribution
+
+```{r}
+#Your Code Here
+```
+
+- The critical region for rejection of the null hypothesis given $\alpha$ = 0.1
+
+```{r}
+#Your Code Here
+```
+
+
+Round ALL your answers to 2 decimal places (8 pts)
+
+
+## (9) Using your answer in (Question 8) is there evidence at the $\alpha$ = 0.1 level to reject the null hypothesis that variance in birth weight is equal between babies born to smoking mothers, versus non-smoking mothers (2 pts)
+
+
+## (10) Researchers claim that birth weights are lower in smoking mothers than non-smoking mothers. Given this claim, write out the null and alternate hypotheses, and indicate which represents the claim. (3 pts)
+
+## (11) Assuming equal variances between groups, perform a two-sample t-test comparing the mean birth weights between babies born to smoking mothers, versus non-smoking mothers, testing the null hypothesis you identified in (Question 10) at a significance level, $\alpha$ = 0.01. Show your working throughout, and present values for the
+
+- The direction of the test
+
+- The t test statistic
+
+```{r}
+#Your Code Here
+```
+
+- The standard error of the sampling distribution
+
+```{r}
+#Your Code Here
+```
+
+- The standardized t-test statistic
+
+```{r}
+#Your Code Here
+```
+
+- The degrees of freedom of the t distribution used to test the standardized test statistic
+
+```{r}
+#Your Code Here
+```
+
+- The p-value of the standardized test statistic.
+
+```{r}
+#Your Code Here
+```
+
+
+Round numeric values to 3 decimal places (12 pts)
+
+
+## (12) Using your answers in (Question 11) make a decision to reject or fail to reject the null hypothesis. State your answer with reference to what you may conclude about the effect of maternal smoking on baby weights (2 pts)
+
+
+# Part C
+
+In this question we will be using the Cuckoo dataset
+
+```{r}
+cuckoo <- read.csv(file="cuckoo_eggs.csv")
+```
+
+Cuckoos are knows to lay their eggs in the nests of other (host) birds. The eggs are then adopted and hatched by the host birds. The data give the lengths of cuckoo eggs (mm) found in nests of various other bird species.
+
+## (13) Create a box-whisker plot of Cuckoo egg length (y axis) as a function of species (x axis), labelling the axes appropriately and giving the plot a meaningful title (4 pts)
+
+```{r}
+#Your Code Here
+```
+
+
+## (14) Fill in the table (CHECK WORD.DOX) by calculating the corresponding sample sizes, means and standard deviations of egg length for each host bird species. Round your answers to 2 decimal places (7 pts) 
+
+Hint: try using the tapply function, which applies the calculation steps to subsets of the data automatically.
+
+```{r}
+tapply(X=cuckoo$Length, INDEX=cuckoo$Bird, FUN=length)
+```
+
+Changing the function applied by altering the FUN = ... argument from length, to mean, to sd will calculate sample size, means and sd’s, respectively
+
+- Species Sample sizes
+
+```{r}
+#Your Code Here
+```
+
+- Sample means
+
+```{r}
+#Your Code Here
+```
+
+- Sample SDs
+
+```{r}
+#Your Code Here
+```
+
+- Hedge Sparrow
+
+```{r}
+#Your Code Here
+```
+
+- Meadow Pipit
+
+```{r}
+#Your Code Here
+```
+
+- Robin
+
+```{r}
+#Your Code Here
+```
+
+- Tree Pipit
+
+```{r}
+#Your Code Here
+```
+
+- Wagtail
+
+```{r}
+#Your Code Here
+```
+
+- Wren
+
+```{r}
+#Your Code Here
+```
+
+- ALL
+
+```{r}
+#Your Code Here
+```
+
+
+## (15) You wish to analyse whether mean egg lengths differ among host bird species using analysis of variance. State the null and alternate hypothesis associated with this ANOVA test (2 pts)
+
+
+## (16) By filling in the ANOVA table below, test the null hypothesis stated in (Question 15) at a significance level of $\alpha$ = 0.05. Based on the ANOVA test, make a decision regarding whether to reject, or fail to reject the null hypothesis. Round all numeric values to 3 decimal places (8 pts)
+
+- Variation Degrees of freedom
+
+```{r}
+#Your Code Here
+```
+
+- Sum of squares
+
+```{r}
+#Your Code Here
+```
+
+- Mean Squares
+
+```{r}
+#Your Code Here
+```
+
+- F Critical 
+
+```{r}
+#Your Code Here
+```
+
+- F p-value
+
+```{r}
+#Your Code Here
+```
+
+- Between species
+
+```{r}
+#Your Code Here
+```
+
+- Within species
+
+```{r}
+#Your Code Here
+```
+
+- Total
+
+```{r}
+#Your Code Here
+```
+
+## (17) Based on the mean values calculated in (Question 13), which species do you think is driving the significance of this test result (2 pts)
+

@@ -1,0 +1,67 @@
+---
+title: "Module 8 Skills"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# PART 1: WEST VS. EAST
+
+You are interested in comparing tree density on the west side of the Cascade Mountains to tree density on the east side. The primary literature you have investigated suggests densities are not equal.  You sample 30 plots on each side of the mountains. Within each plot you measured tree density (stems/hectare).  The plots were select to control for elevation, aspect, and slope. You can read the data into R by running these commands:
+
+```{r}
+westside <- c(195, 210, 191, 205, 222, 168, 204, 184, 191, 165, 346, 270, 232, 285, 289, 247, 260, 275, 215, 255, 237, 231, 283, 260, 241, 199, 245, 223, 211, 185)
+
+eastside <- c(113, 101,121, 87, 95, 140, 115, 135, 91, 155, 35, 49, 68, 97, 100, 185, 93, 140, 101, 166, 95, 168, 171, 118, 115, 137, 165, 85, 91, 124)
+```
+
+## 1.	 State the null and alternative hypotheses and identify which represents the claim. 
+
+## 2. Choose a level of significance ($\alpha$) for this test. 
+
+## 3. What sampling distribution should we use?  What number of tails is appropriate for the test and on which side of the mean?
+
+## 4. Test the assumption of equal variance using an F-test. Use an $\alpha$ of 0.1.
+
+### a.	State the null and alternative hypotheses for the F-test.
+
+### b.	Use var.test() in R to conduct the F-test. 
+
+### c.	 Make a decision to reject or fail to reject the null hypothesis. Can we assume the two groups have equal variance?
+
+
+## 5. Use t.test() in R to conduct the appropriate test.
+
+
+## 6. Make a decision to reject or fail to reject the null hypothesis.  
+
+
+## 7. Interpret your results.  
+
+What does this mean with regards to the density of trees in these two parts of the state?
+
+
+# PART 2: EGG WEIGHTS
+
+You’re an environmental consultant concerned about the impacts of different land uses on bird reproductive success. You randomly sample American robin eggs collected from areas used for agricultural, residential, and mining purposes. You measure the weights of all eggs collected to compare differences in growth rates. You want to know whether the mean egg weights differ between the land use types.
+
+The data are available in the file eggweights.csv, which gives the weights of eggs in grams and the land use type from which each egg was collected.
+
+## 1.	What type of test is this and why?
+
+## 2. Give the null and alternative hypotheses. 
+
+## 3. Use aov() and summary() in R to conduct the appropriate test. 
+
+## 4. What is the degree of freedom of the treatments?
+
+## 5. What is the degree of freedom of the residuals?
+
+## 6. Make a decision to reject or fail to reject the null hypothesis using $\alpha$ =0.05.  Interpret the result.
+
+## 7. Make a boxplot of egg weights for these 3 groups with the groups name on the X-axis.
+
+
