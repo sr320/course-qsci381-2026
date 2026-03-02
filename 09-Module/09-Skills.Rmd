@@ -1,0 +1,126 @@
+---
+title: "Module 9 Skills"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Q1: Egg Weights
+
+You’re an environmental consultant concerned about the impacts of different land uses on bird reproductive success. You randomly sample American robin eggs collected from areas used for agricultural, residential, and mining purposes. You measure the weights of all eggs collected to compare differences in growth rates. You want to know whether the mean egg weights differ between the land use types.
+
+The data are available in the file `eggweights.csv`, which gives the weights of eggs in grams and the land use type from which each egg was collected.
+
+Continue from Last week’s Egg weight exercise
+
+## 1.	Use the Scheffé Test to compare the mean egg weights from different land use areas using alpha=0.05.
+
+### a.	Find the critical F using the qf() function in R.
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+### b.	Calculate the mean egg weight for each group
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+### c.	Calculate the test F to compare mining and agricultural areas.
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+### d.	Calculate the test F to compare mining and residential areas.
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+### e.	Calculate the test F to compare agricultural and residential areas.
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+### f.	What conclusions can be drawn based on the test F computed in 1(c) to 1(e)? Which means differ?
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+### g.	Now use the `ScheffeTest( )` function in R to run the post-hoc Scheffe test and interpret the results. 
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+
+# Q2: Does habitatat fragmentation influence cougar mortality?
+
+Vickers et al (2015), documented the cause of death in cougars from two populations in Southern California. In both populations, humans caused the majority of documented cougar deaths. The population in the Santa Ana Mountains (West) may be genetically isolated from other cougar populations by large highways. To understand this risk, let’s determine if the cause of cougar mortality is independent of the population in which the animal lived.
+
+Read the data into R, using `read.csv()`, and create a contingency table with the command `table()`.
+
+Let’s get more practice with the `apply()` command. You can use `apply()` to summarize tables,   matrices, and arrays. For instance, `apply(table(cougar), 1, sum)` takes the sum of every row of   the table – the sums of the elements in the first dimension:
+
+To get the sums of the elements in the first and second dimensions, use `apply(table(cougar),c(1,2) , sum)`. In this case we just get back the original table.
+
+## 1.	What type of test will you need to conduct? Why?
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## 2.	What are the null and alternative hypotheses?
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## 3.	Construct a contingency table for expected frequencies under H0.
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## 4.	Use `chisq.test()` to conduct the appropriate test. 
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## 5.	Interpret the output and make a decision to reject or fail to reject the null hypothesis using alpha=0.05. 
+
+```{r}
+#Your code here
+```
+
+Your final answer here

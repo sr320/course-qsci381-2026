@@ -1,0 +1,140 @@
+---
+title: "Module 9 Homework: Descriptive Statistics & Probability"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+**To submit your completed homework, knit this .Rmd file to a pdf. This will produce an easy-to-read format that includes all written text, all code, and all code output (including plots). You can then submit the rendered PDF file to Gradescope. When submitting to Gradescope, please select the page(s) that include relevant work and output for each question.**
+
+--- 
+
+# Part A
+
+On your way to a trailhead for a hike in bear country, a well-meaning logger tells you that 50 % of fatal black bear attacks are perpetrated by mother bears defending their cubs, and all other attacks are more or less random (equally likely to be lone females or males). Being a naturally skeptical, curious, and resourceful person, you dig up some data on fatal black bear attacks in North America since 1900, and tally the results as follows:
+
+
+
+|Type of Black Bear	| Number of Documented Attacks|
+|-------------------|-----------------------------|
+| Male              |                          55 |
+| Female            |                           3 |
+| Female with Cubs  |	                          5 |
+
+Create a vector of the bear attack data by entering the data manually:
+
+```{r}
+attacks <- c(55, 3, 5)
+```
+
+## (1) 	What type of test will you need to conduct to evaluate the logger’s claim, and what are the null and alternative hypotheses? (3 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here 
+
+## (2) Calculate and present the expected frequencies from this data, based on the expectation that 50% of attacks will be from Females with Cubs, and 25% each for lone males, lone females. (4 pts) 
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (3) Given the information calculated in (Question 2) does this data meet the requirements for running the test you stated in (Question 1)? (2 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (4) Calculate and present the test statistic for this test (4 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (5) Test the null hypothesis associated with this test at a significance level alpha = 0.01, stating the result of the test and relevant test values (4 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (6) Given the result you found in (Question 5), provide a written interpretation of whether the initial claim was supported or denied by the data (3 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+# Part B
+
+The North Pacific undergoes decadal scale variability in ocean temperatures (known as the Pacific Decadal Oscillation). In 2014, the Northeast Pacific underwent a shift from predominantly cooler conditions that had been present since the early 2000’s to a very warm phase that prevailed from 2014 to 2020. Seabirds are particularly sensitive to changes in ocean temperatures, as changes in ocean temperatures alter food-web structure, ultimately changing the quality and/or quality of seabird prey (fish, krill). We will look at a dataset of seabird mortality records from southern Washington to identify whether the taxonomic composition of seabird mortality is independent of temperature regime by comparing records from 2007-2009 (cold regime) to records from 2014-2016 (warm regime)
+
+Load the seabird mortality dataset
+
+```{r}
+birds <- read.csv(file="seabird_mortality.csv")
+```
+
+Each row is a record of a dead seabird found on a beach, and the column bird.id corresponds to the taxonomic group that bird belonged to. 
+ 
+## (7) Create a contingency table of the data using table() with columns corresponding to bird taxonomic ID and rows corresponding to temperature regime (cold, warm). (4 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (8) Upon first glance, what is your initial impression of the differences between warm and cold periods (2 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (9) Calculate the row and column sums of your contingency table, and then use this to calculate a table of expected frequencies if taxonomic composition was independent of temperature regime. Include the expected frequency table below (6 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (10) Which type of test would you use to test whether composition is independent of temperature regime, and what are the requirements for that test? Does the data meet those requirements? (4 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (11) Run the appropriate test to test whether composition is independent of temperature regime at a significance level alpha = 0.01. In your answer include: the test statistic, critical value of the test statistic, and the p-value of that test. (6 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
+## (12) Based on your answer in (Question 11), do you think that taxonomic composition is independent of temperature regime for this data? (2 pts)
+
+```{r}
+#Your code here
+```
+
+Your final answer here
+
