@@ -113,7 +113,7 @@ Your final answer here
 
 ## Question 8
 
-the range of sample means (with the mid-range set to the sample mean you obtained in Q4) you would expect to obtain 60% of the time with a sample size n = 45. Show your work.(4 pts)
+Calculate the range of sample means (with the mid-range set to the sample mean you obtained in Q4) you would expect to obtain 60% of the time with a sample size n = 45. Show your work.(4 pts)
 
 ```{r}
 # Your code here
