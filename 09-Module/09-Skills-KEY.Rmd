@@ -1,0 +1,194 @@
+---
+title: "Module 9 Skills"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Q1: Egg Weights
+
+You’re an environmental consultant concerned about the impacts of different land uses on bird reproductive success. You randomly sample American robin eggs collected from areas used for agricultural, residential, and mining purposes. You measure the weights of all eggs collected to compare differences in growth rates. You want to know whether the mean egg weights differ between the land use types.
+
+The data are available in the file `eggweights.csv`, which gives the weights of eggs in grams and the land use type from which each egg was collected.
+
+Continue from Last week’s Egg weight exercise
+
+## 1.	Use the Scheffé Test to compare the mean egg weights from different land use areas using alpha=0.05.
+
+```{r}
+# Load and check data
+eggweights <- read.csv("eggweights.csv")
+head(eggweights)
+str(eggweights)
+eggweights$land.use <- as.factor(eggweights$land.use)
+```
+
+### a.	Find the critical F using the qf() function in R.
+
+```{r}
+k <- 3
+N <- nrow(eggweights)
+(k-1)*qf(1-0.05, df1 = k-1, df2 = N-k)
+```
+
+### b.	Calculate the mean egg weight for each group
+
+```{r}
+mean.m <- mean(eggweights$egg.weights[eggweights$land.use=="Mining"])
+mean.a <- mean(eggweights$egg.weights[eggweights$land.use=="Agriculture"])
+mean.r <- mean(eggweights$egg.weights[eggweights$land.use=="Residential"])
+
+mean.m
+mean.a
+mean.r
+```
+
+
+### c.	Calculate the test F to compare mining and agricultural areas.
+
+```{r}
+egg.anova <- aov(egg.weights~land.use, data=eggweights)
+summary(egg.anova)
+```
+
+```{r}
+SSE <- 52.40 #based on the summary() output above
+
+n.m <- length(eggweights$egg.weights[eggweights$land.use=="Mining"])
+n.a <- length(eggweights$egg.weights[eggweights$land.use=="Agriculture"])
+
+n.m
+n.a
+
+F.test.ma <- (mean.m - mean.a)^2 / ((SSE/(N-k))*(1/n.m + 1/n.a))
+F.test.ma
+```
+
+So the test F to compare mining and agricultural areas is 48.939.
+
+### d.	Calculate the test F to compare mining and residential areas.
+
+```{r}
+n.r <- length(eggweights$egg.weights[eggweights$land.use=="Residential"])
+n.r
+
+F.test.mr <- (mean.m - mean.r)^2 / ((SSE/(N-k)) * (1/n.m + 1/n.r))
+F.test.mr
+```
+
+So the test F to compare mining and residential areas is 68.977.
+
+### e.	Calculate the test F to compare agricultural and residential areas.
+
+```{r}
+F.test.ar <- (mean.a - mean.r)^2 / ((SSE/(N-k)) * (1/n.a + 1/n.r))
+F.test.ar
+```
+
+So the test F to compare agricultural and residential areas is 1.715.
+
+### f.	What conclusions can be drawn based on the test F computed in 1(c) to 1(e)? Which means differ?
+
+The test F statistics calculated in both (c) and (d) are greater than the critical F (6.248), therefore we can conclude that the mean egg weights in mining areas differs from the mean egg weights in both agricultural and residential areas at alpha=0.05. 
+
+The test F calculated in (e) is not greater than the critical F (6.248), therefore we conclude that the mean egg weights in agricultural areas does not differ from residential areas at alpha=0.05
+
+
+### g.	Now use the `ScheffeTest( )` function in R to run the post-hoc Scheffe test and interpret the results. 
+
+```{r}
+# If you do not have the DescTools package installed, uncomment and run the below command to do so
+#install.packages("DescTools")
+
+# load the DescTools package
+library(DescTools)
+
+# Run ScheffeTest
+ScheffeTest(egg.anova)
+
+```
+
+The p-values lead to the same conclusions that we drew in 1(f).
+
+
+# Q2: Does habitatat fragmentation influence cougar mortality?
+
+Vickers et al (2015), documented the cause of death in cougars from two populations in Southern California. In both populations, humans caused the majority of documented cougar deaths. The population in the Santa Ana Mountains (West) may be genetically isolated from other cougar populations by large highways. To understand this risk, let’s determine if the cause of cougar mortality is independent of the population in which the animal lived.
+
+Read the data into R, using `read.csv()`, and create a contingency table with the command `table()`.
+
+```{r}
+cougar<-read.csv("PumaSurvival.csv")
+head(cougar)
+
+table(cougar$Population, cougar$Cause)
+```
+
+Let’s get more practice with the `apply()` command. You can use `apply()` to summarize tables,   matrices, and arrays. For instance, `apply(table(cougar), 1, sum)` takes the sum of every row of   the table – the sums of the elements in the first dimension:
+
+```{r}
+apply(table(cougar), 1, sum)
+```
+
+To get the sums of the elements in the first and second dimensions, use `apply(table(cougar),c(1,2) , sum)`. In this case we just get back the original table.
+
+```{r}
+apply(table(cougar), c(1,2), sum)
+```
+
+## 1.	What type of test will you need to conduct? Why?
+
+Chi-Square Test of Independence. We want to know whether two variables are independent of each other.
+
+## 2.	What are the null and alternative hypotheses?
+
+H0: Cause of Death and Population are independent
+Ha:  Cause of Death and Population are not independent
+
+## 3.	Construct a contingency table for expected frequencies under H0.
+
+```{r}
+obs.table <- table(cougar$Population, cougar$Cause)
+
+rowSums(obs.table)
+colSums(obs.table)
+sum(obs.table)
+
+rowSums(obs.table)[1]*colSums(obs.table)/sum(obs.table)
+rowSums(obs.table)[2]*colSums(obs.table)/sum(obs.table)
+```
+
+```{r}
+obs.table <- table(cougar$Population, cougar$Cause)
+exp.table <- obs.table
+exp.table[1,] <- rowSums(obs.table)[1]*colSums(obs.table)/sum(obs.table)
+exp.table[2,] <- rowSums(obs.table)[2]*colSums(obs.table)/sum(obs.table)
+addmargins(exp.table) #add the totals
+
+```
+
+
+
+Or we can use the **shortcut**:
+
+```{r}
+obs.table <- table(cougar$Population, cougar$Cause)
+test.result <- chisq.test(obs.table)
+
+test.result$expected
+addmargins(test.result$expected)
+```
+
+## 4.	Use `chisq.test()` to conduct the appropriate test. 
+
+```{r}
+obs.table <- table(cougar$Population, cougar$Cause)
+chisq.test(obs.table)
+```
+
+## 5.	Interpret the output and make a decision to reject or fail to reject the null hypothesis using alpha=0.05. 
+
+Because the p-value is smaller than 0.05, we reject the null hypothesis. We conclude that the cause of cougar deaths is not independent from the population.
