@@ -1,0 +1,265 @@
+---
+title: "Module 10 Skills"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+# Part A
+
+For this lab you will be using the iris dataset already built into R. Your goal is to look for correlation among the different variables (sepal length, petal length, and petal width) and test for significant relationships.
+
+To load the iris data into RStudio, use the command `data(iris)`. You can view the column headers using the
+command `head(iris)`.
+
+## 1) Start by plotting all three combinations of sepal length, petal length, and petal width (sepal length & petal length, sepal length & petal width, petal length & petal width) as scatterplots.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 2) Just by visually inspecting the scatter plots, do any of the data look like they might be correlated? Why?
+
+Your final answer here
+
+## 3) Next we are going to find the correlation coefficient, r, for all three combinations.
+
+Using the formula below, find the correlation coefficient r for the combination of sepallength and petal length. To make this easier, rename the variables “x”, “y”, and “z”,determine n using length(x) and run the following code, and paste your output below.
+
+This code example gives the correlation between x and y.
+
+```{r}
+# r <- (n*sum(x*y) - sum(x)*sum(y)) / (sqrt(n*sum(x^2) - sum(x)^2) * sqrt(n*sum(y^2) - sum(y)^2))
+```
+
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 4) Now find the correlation coefficient for the same combination as #2a, but this time use the `cor()` command instead of the formula. 
+
+Hint: you should get the same answer.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 5) Now find the correlation coefficients for the other two remaining combinations of variables.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 6) Rank the comparisons from strongest relationship (1) to weakest (3).
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 7) For the comparison with the weakest relationship, you want to test whether it is statistically significant at alpha = 0.05. State your null and alternative hypotheses.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 8) Define your sampling distribution, number of tails, n, and degrees of freedom.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 9) Calculate the critical value(s) for the relevant standardized test statistic using the below function
+
+`qt(p = alpha/2, df = degrees of freedom)`
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 10) Calculate the appropriate standardized test statistic using the formula below and report your answer.
+
+```{r}
+# t = (r*sqrt(n-2))/sqrt(1-r^2)
+```
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 11) What is the result of your test? Report in terms of your hypotheses.
+
+Your final answer here
+
+# Part B
+
+Tree Food Regression
+
+You take a summer internship in southeast Alaska evaluating the relationship between salmon abundance and riparian vegetation density among 15 streams. You hypothesize that the nutrients salmon bring back to streams in their bodies makes for larger and more abundant trees. You measure the basal area of trees in square meters per acre, within 100m of fish bearing streams.
+
+You then use the Alaska Department of Fish and Game’s salmon run data to find the average number of fish (in 1000’s) for each river. These data can be found in the “TreeFood.csv” file on Canvas.
+
+```{r}
+salmon<-read.csv("TreeFood.csv", header=TRUE)
+head(salmon)
+```
+
+## 12) Create a scatter plot with salmon abundance on the x-axis and the tree basal area on the y-axis. 
+
+Label the graph, label each axis appropriately, and make it colorful.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 13) Find the line of best fit (regression line) for the salmon and tree area data using the equations found in the lab slides 14 and 15 (file included in the 10-Module folder).
+
+### a) First, calculate and interpret r. (Hint: define n, x, and y first.)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### b) Next, calculate the slope (b1) for the regression line.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### c) Now calculate the intercept (b0) for the regression line.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### d) Finally, write out the regression equation in terms of the variables Abundance and Tree.Area.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### e) Based on the regression equation above, calculate the predicted Tree.Area for salmon abundance values of:
+
+#### i) 1.9
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+#### ii) 2.7
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 14) Interpret the slope in the context of the original question. 
+
+What does it tell you about the potential effect of salmon on tree density? Have you proven this to be true using this analysis? Is there another potential explanation?
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 15) Now we want to calculate the coefficient of determination (r2). Remember that the r2 is calculated as the explained variation divided by the total variation.
+
+### a) Start by first calculating the predicted value of y (y hat) for each value of x.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### b) Next calculate the total variation as the sum of the squared differences between each observed y (y_i) and the mean of y (y bar).
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### c) Then calculate the explained variation as the sum of the squared differences between each predicted y (y hat) and the mean of y (y bar).
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### d) Finally calculate the coefficient of determination.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### e) Lastly, let’s let RStudio make our lives easier by using the `lm()` function.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+#### i) State your null and alternative hypotheses for the slope (b1)
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### ii) Now use the `lm()` and `summary()` functions in RStudio to perform a linear regression of the salmon abundance and tree area data.
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 16) You’ll see that not only do you get the same estimates for the intercept (b0) and slope (b1), but also the standard errors, t-values, and P values for those estimates. Is our slope estimate significant (assume an alpha of 0.05)? How can you tell? What does that mean in terms of our original question?
+
+```{r}
+# Your code here
+```
+
+Your final answer here

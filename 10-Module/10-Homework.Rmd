@@ -1,0 +1,84 @@
+---
+title: "Module 10 Homework: Descriptive Statistics & Probability"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+# **BONUS (5 points)**
+
+We would like as much information as possible on how to improve the course. As such, we would like you to complete the course evaluation.
+
+To motivate you to complete this evaluation we are offering a **bonus 5 pts** on this assignment. While this might not seem like much, it may constitute a 0.25 difference overall in your grade-point score at the end of the course … so why not? Evaluations must be submitted by March 13, 11:59, and you must complete the evaluations for both the course instructor and your lab TA.
+
+Did you complete the course evaluations? 
+
+RESPONSE HERE
+
+
+
+# Part 1
+
+The American Alligator (Alligator mississippiensis) lays eggs into nests that are dug into river banks. During incubation, the sex ratio of alligator hatchlings can be influenced by the temperature of the nest. Make sure to CHECK the word.dox on Canvas.
+
+Load the alligator sex ratio data into R
+```{r}
+gator <- read.csv(file="alligator_sex_ratio.csv")
+```
+
+
+## 1) Plot the proportion of female hatchlings (p_female) against Temperature, making sure to label your plot appropriately. Provide a written description of the shape of this relationship? [8 pts]
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 2)	What is the correlation between p.female and temperature? Is this correlation significantly different from zero (H0: p = 0) at alpha = 0.01? [10 pts]
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 3)	Using the `lm()` function, fit a regression model, and provide estimates for the intercept and slope of the fitted regression line. Provide a written description of what the slope parameter represents for this model, making particular reference to the numeric value in your answer. [5 pts]
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 4)	Use the regression line fitted in (3) to predict the expected proportion of female hatchlings at nest temperatures of 
+
+### (i) 32°C [2 pts]
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+### (ii) 33°C [2 pts]
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+## 5)	Based on the values in Question 4, and thinking about the range of observations that are possible, what would you interpret about the general applicability of this model? [2 pts]
+
+```{r}
+# Your code here
+```
+
+Your final answer here
+
+
