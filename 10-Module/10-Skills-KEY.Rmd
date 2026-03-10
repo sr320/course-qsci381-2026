@@ -1,0 +1,303 @@
+---
+title: "Module 10 Skills"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+# Part A
+
+For this lab you will be using the iris dataset already built into R. Your goal is to look for correlation among the different variables (sepal length, petal length, and petal width) and test for significant relationships.
+
+To load the iris data into RStudio, use the command `data(iris)`. You can view the column headers using the
+command `head(iris)`.
+
+## 1) Start by plotting all three combinations of sepal length, petal length, and petal width (sepal length & petal length, sepal length & petal width, petal length & petal width) as scatterplots.
+
+```{r}
+plot(x = iris$Sepal.Length, y = iris$Petal.Length, main = "Sepal Length vs. Petal Length")
+```
+
+```{r}
+plot(x = iris$Sepal.Length, y = iris$Petal.Width, main = "Sepal Length vs. Petal Width")
+```
+
+```{r}
+plot(x = iris$Petal.Width, y = iris$Petal.Length, main = "Petal Width vs. Petal Length")
+```
+
+## 2) Just by visually inspecting the scatter plots, do any of the data look like they might be correlated? Why?
+
+All three relationships look like they could be correlated, points seem to cluster in “lines”
+
+## 3) Next we are going to find the correlation coefficient, r, for all three combinations.
+
+Using the formula below, find the correlation coefficient r for the combination of sepallength and petal length. To make this easier, rename the variables “x”, “y”, and “z”,determine n using length(x) and run the following code, and paste your output below.
+
+This code example gives the correlation between x and y.
+
+```{r}
+# r <- (n*sum(x*y) - sum(x)*sum(y)) / (sqrt(n*sum(x^2) - sum(x)^2) * sqrt(n*sum(y^2) - sum(y)^2))
+```
+
+```{r}
+cor_coef <- function(x, y){
+  n <- length(x)
+  r <- (n * sum(x*y) - sum(x) * sum(y)) / (sqrt(n * sum(x^2) - sum(x)^2) * sqrt(n * sum(y^2) - sum(y)^2))
+  return(r)
+}
+
+cor_coef(iris$Sepal.Length, iris$Petal.Length)
+```
+
+Correlation coefficient between Sepal Length and Petal Length is 0.8717538
+
+## 4) Now find the correlation coefficient for the same combination as #2a, but this time use the `cor()` command instead of the formula. 
+
+Hint: you should get the same answer.
+
+```{r}
+cor(iris$Sepal.Length, iris$Petal.Length)
+```
+
+## 5) Now find the correlation coefficients for the other two remaining combinations of variables.
+
+```{r}
+cor(iris$Sepal.Length, iris$Petal.Width)
+cor(iris$Petal.Width, iris$Petal.Length)
+```
+
+## 6) Rank the comparisons from strongest relationship (1) to weakest (3).
+
+Higher correlation coefficient indicates a stronger relationship, so:
+
+(1) Petal Width and Petal Length
+
+(2) Sepal Length and Petal Length
+
+(3) Sepal Length and Petal Width
+
+## 7) For the comparison with the weakest relationship, you want to test whether it is statistically significant at alpha = 0.05. State your null and alternative hypotheses.
+
+H0: There is no correlation between Sepal Length and Petal Width
+
+HA: There is a non-zero correlation between Sepal Length and Petal Width
+
+## 8) Define your sampling distribution, number of tails, n, and degrees of freedom.
+
+```{r}
+n <- length(iris$Sepal.Length)
+df <- n-2
+
+n
+df
+```
+
+We will perform a two-tailed test using a t-distribution with a sample size of n=150 and degrees of freedom n-2 (df=148).
+
+## 9) Calculate the critical value(s) for the relevant standardized test statistic using the below function
+
+`qt(p = alpha/2, df = degrees of freedom)`
+
+```{r}
+alpha <- 0.05
+t_crit <- c(-1, 1)*qt(1-alpha/2, df)
+t_crit
+```
+
+## 10) Calculate the appropriate standardized test statistic using the formula below and report your answer.
+
+```{r}
+# t = (r*sqrt(n-2))/sqrt(1-r^2)
+```
+
+```{r}
+x <- iris$Sepal.Length
+y <- iris$Petal.Width
+xbar <- mean(x)
+ybar <- mean(y)
+xsd <- sd(x)
+ysd <- sd(y)
+
+r_manual <- (1/(n-1))*sum( ((x-xbar)/xsd) * ((y-ybar)/ysd))
+r <- cor(x,y)
+
+# These should be equivalent
+r_manual
+r
+```
+
+```{r}
+t <- (r*sqrt(n-2))/sqrt(1-r^2)
+pval <- 2*min(pt(t,df), 1-pt(t,df))
+
+t
+pval
+```
+
+We can check our work using the built-in test
+
+```{r}
+cor.test(x=x, y=y, alternative="two.sided")
+```
+
+## 11) What is the result of your test? Report in terms of your hypotheses.
+
+The t-statistic falls well above the positive critical value and the p-value is well below our significance level of 0.05, so we reject the null hypothesis. Sepal Length and Petal Width have a significant, non-zero correlation.
+
+# Part B
+
+Tree Food Regression
+
+You take a summer internship in southeast Alaska evaluating the relationship between salmon abundance and riparian vegetation density among 15 streams. You hypothesize that the nutrients salmon bring back to streams in their bodies makes for larger and more abundant trees. You measure the basal area of trees in square meters per acre, within 100m of fish bearing streams.
+
+You then use the Alaska Department of Fish and Game’s salmon run data to find the average number of fish (in 1000’s) for each river. These data can be found in the “TreeFood.csv” file on Canvas.
+
+```{r}
+salmon<-read.csv("TreeFood.csv", header=TRUE)
+head(salmon)
+```
+
+## 12) Create a scatter plot with salmon abundance on the x-axis and the tree basal area on the y-axis. 
+
+Label the graph, label each axis appropriately, and make it colorful.
+
+```{r}
+plot(x=salmon$Abundance, y=salmon$Tree.Area,
+     main="Salmon abundance vs. Tree area",
+     xlab="Salmon abundance (in 1000s)",
+     ylab="Tree basal area (m^2/acre)",
+     col="salmon", # ;)
+     pch=16)
+```
+
+Your final answer here
+
+## 13) Find the line of best fit (regression line) for the salmon and tree area data using the equations found in the lab slides 14 and 15 (file included in the 10-Module folder).
+
+### a) First, calculate and interpret r. (Hint: define n, x, and y first.)
+
+```{r}
+x <- salmon$Abundance
+y <- salmon$Tree.Area
+n <- length(x)
+r <- cor(x, y)
+r
+```
+
+salmon abundance and tree area have a correlation of 0.84.
+
+### b) Next, calculate the slope (b1) for the regression line.
+
+```{r}
+xsd <- sd(x)
+ysd <- sd(y)
+b1 <- (ysd/xsd)*r
+b1
+```
+
+### c) Now calculate the intercept (b0) for the regression line.
+
+```{r}
+xbar <- mean(x)
+ybar <- mean(y)
+b0 <- ybar-b1*xbar
+b0
+```
+
+### d) Finally, write out the regression equation in terms of the variables Abundance and Tree.Area.
+
+```{r}
+plot(x=salmon$Abundance, y=salmon$Tree.Area,
+     main="Salmon abundance vs. Tree area",
+     xlab="Salmon abundance (in 1000s)",
+     ylab="Tree basal area (m^2/acre)",
+     col="salmon", 
+     pch=16)
+
+abline(a=b0,b=b1)
+```
+
+Tree.Area = 17.306 + 8.990*Abundance
+
+### e) Based on the regression equation above, calculate the predicted Tree.Area for salmon abundance values of:
+
+#### i) 1.9
+
+```{r}
+b0 + b1*1.9
+```
+
+#### ii) 2.7
+
+```{r}
+b0 + b1*2.7
+```
+
+
+## 14) Interpret the slope in the context of the original question. 
+
+What does it tell you about the potential effect of salmon on tree density? Have you proven this to be true using this analysis? Is there another potential explanation?
+
+The slope of 8.990 tells us that, as the salmon abundance increases by 1 (1000 fish), the tree area concurrently increases by 8.99 m^2/acre. This is not, however, proven to be a causal relationship! It could be that a different variable (e.g. temperature) directly influences salmon abundance and tree area, and the two are only correlated because of their dependence on the same alternate variable. Correlation is not causation.
+
+## 15) Now we want to calculate the coefficient of determination (r2). Remember that the r2 is calculated as the explained variation divided by the total variation.
+
+### a) Start by first calculating the predicted value of y (y hat) for each value of x.
+
+```{r}
+y_pred <- b0 + b1*x
+y_pred[1:5]
+```
+
+Your final answer here
+
+### b) Next calculate the total variation as the sum of the squared differences between each observed y (y_i) and the mean of y (y bar).
+
+```{r}
+ss_total <- sum((y - mean(y))^2)
+ss_total
+```
+
+### c) Then calculate the explained variation as the sum of the squared differences between each predicted y (y hat) and the mean of y (y bar).
+
+```{r}
+ss_explained <- sum((y_pred - mean(y))^2)
+ss_explained
+```
+
+Your final answer here
+
+### d) Finally calculate the coefficient of determination.
+
+```{r}
+rsq <- ss_explained/ss_total
+```
+
+Your final answer here
+
+### e) Lastly, let’s let RStudio make our lives easier by using the `lm()` function.
+
+#### i) State your null and alternative hypotheses for the slope (b1)
+
+H0: b1 = 0
+HA: b1 =/= 0
+
+### ii) Now use the `lm()` and `summary()` functions in RStudio to perform a linear regression of the salmon abundance and tree area data.
+
+```{r}
+lm_salmon <- lm(salmon$Tree.Area ~ salmon$Abundance)
+summary(lm_salmon)
+```
+
+The Intercept estimate matches our b0, and salmon$Abundance slope estimate matches b1. The Multiple
+R-squared value also matches our calculated r_sq.
+
+## 16) You’ll see that not only do you get the same estimates for the intercept (b0) and slope (b1), but also the standard errors, t-values, and P values for those estimates. Is our slope estimate significant (assume an alpha of 0.05)? How can you tell? What does that mean in terms of our original question?
+
+The p-value associated with our slope is 6.37e-05, which is highly significant. We reject the null hypothesis
+that b1=0.
